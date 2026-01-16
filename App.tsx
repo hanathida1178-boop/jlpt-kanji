@@ -259,7 +259,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 flex flex-col items-center p-3 md:p-8">
       <div className="max-w-xl w-full flex flex-col min-h-[90vh] md:min-h-0">
         {/* Navigation Header */}
-        <div className="flex justify-between items-center mb-2 md:mb-8">
+        <div className="flex justify-between items-center mb-1 md:mb-8">
           <button
             onClick={() => setView('home')}
             className="flex items-center gap-2 text-slate-400 font-black text-[10px] tracking-widest hover:text-indigo-600 transition-all uppercase"
@@ -274,7 +274,7 @@ export default function App() {
         </div>
 
         {/* Feedback Area */}
-        <div className="h-6 md:h-12 mb-1 md:mb-4 flex justify-center">
+        <div className="h-4 md:h-12 mb-0 md:mb-4 flex justify-center">
           <div className={`transition-all duration-300 ${feedback ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-95'}`}>
             {feedback && (
               <div className={`${feedback.color} bg-white shadow-xl border-2 px-6 py-2 rounded-full flex items-center gap-2 text-[10px] md:text-[11px] font-black italic`}>
@@ -294,7 +294,7 @@ export default function App() {
               >
                 {/* FRONT FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col items-center justify-center p-6 md:p-8 border-[8px] md:border-[12px] border-slate-100 shadow-inner group">
-                  <div className="text-[100px] md:text-[180px] leading-none font-bold text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
+                  <div className="text-[100px] md:text-[180px] leading-none font-semibold text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
                     {currentCard.kanji}
                   </div>
                   <div className="mt-8 md:mt-16 flex flex-col items-center gap-3">
@@ -305,13 +305,13 @@ export default function App() {
                 {/* BACK FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-6 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
                   <div className="flex justify-between items-end mb-3 md:mb-8 border-b-2 border-slate-100 pb-3 md:pb-6">
-                    <span className="text-4xl md:text-7xl font-bold text-indigo-900 leading-none">{currentCard.kanji}</span>
+                    <span className="text-4xl md:text-7xl font-semibold text-indigo-900 leading-none">{currentCard.kanji}</span>
                     <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full shadow-sm">{activeDeck?.title}</span>
                   </div>
 
                   <div className="space-y-4 md:space-y-10">
                     <section>
-                      <label className="text-[8px] md:text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] block mb-1 md:mb-3">မြန်မာအဓိပ္ပアယ်</label>
+                      <label className="text-[8px] md:text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] block mb-1 md:mb-3">မြန်မာအဓိပ္ပာယ်</label>
                       <p className="text-xl md:text-3xl text-slate-800 font-bold leading-tight italic decoration-indigo-200 decoration-2">{currentCard.meaning}</p>
                     </section>
 
