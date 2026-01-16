@@ -124,16 +124,20 @@ export default function App() {
 
     // Animation delay before moving to next card
     setTimeout(() => {
-      if (type !== 'wrong') {
+      setFeedback(null);
+      // If it stays in deck ('wrong'), we must advance.
+      // If it leaves deck ('hard'/'easy'), the list shifts and the current index 
+      // now points to the next card. We only reset if we hit the end.
+      if (type === 'wrong') {
+        setCurrentIndex((prev) => (dueCards.length > 1 ? (prev + 1) % dueCards.length : 0));
+      } else {
+        // Since the current card is removed, the remaining cards shift down.
+        // We only need to reset index if we were at the very last card.
         if (currentIndex >= dueCards.length - 1) {
           setCurrentIndex(0);
         }
-      } else {
-        // Shuffle the wrong card back into the deck or just move to next if only 1
-        setCurrentIndex((prev) => (dueCards.length > 1 ? (prev + 1) % dueCards.length : 0));
       }
-      setFeedback(null);
-    }, 600);
+    }, 400);
   };
 
   const handleUploadDeck = async () => {
@@ -259,7 +263,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 flex flex-col items-center p-3 md:p-8">
       <div className="max-w-xl w-full flex flex-col min-h-[90vh] md:min-h-0">
         {/* Navigation Header */}
-        <div className="flex justify-between items-center mb-1 md:mb-8">
+        <div className="flex justify-between items-center mb-0 md:mb-8">
           <button
             onClick={() => setView('home')}
             className="flex items-center gap-2 text-slate-400 font-black text-[10px] tracking-widest hover:text-indigo-600 transition-all uppercase"
@@ -294,7 +298,7 @@ export default function App() {
               >
                 {/* FRONT FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col items-center justify-center p-6 md:p-8 border-[8px] md:border-[12px] border-slate-100 shadow-inner group">
-                  <div className="text-[100px] md:text-[180px] leading-none font-semibold text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
+                  <div className="text-[100px] md:text-[180px] leading-none font-medium text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
                     {currentCard.kanji}
                   </div>
                   <div className="mt-8 md:mt-16 flex flex-col items-center gap-3">
@@ -305,7 +309,7 @@ export default function App() {
                 {/* BACK FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-6 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
                   <div className="flex justify-between items-end mb-3 md:mb-8 border-b-2 border-slate-100 pb-3 md:pb-6">
-                    <span className="text-4xl md:text-7xl font-semibold text-indigo-900 leading-none">{currentCard.kanji}</span>
+                    <span className="text-4xl md:text-7xl font-medium text-indigo-900 leading-none">{currentCard.kanji}</span>
                     <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full shadow-sm">{activeDeck?.title}</span>
                   </div>
 
