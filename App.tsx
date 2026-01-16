@@ -88,7 +88,7 @@ export default function App() {
 
   const currentCard = dueCards[currentIndex];
 
-  const handleMark = async (type: 'wrong' | 'hard' | 'easy') => {
+  const handleMark = (type: 'wrong' | 'hard' | 'easy') => {
     if (!currentCard || !user) return;
     const now = Date.now();
     let nextTime;
@@ -111,26 +111,24 @@ export default function App() {
     const newProgress = { ...userProgress, [currentCard.id]: nextTime };
     setUserProgress(newProgress);
 
-    try {
-      await setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'progress'), {
-        reviewTimes: newProgress,
-        updatedAt: now
-      });
-    } catch (e) {
-      console.error("Cloud Save Error", e);
-    }
+    // Save to Firebase in background (don't wait)
+    setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'progress'), {
+      reviewTimes: newProgress,
+      updatedAt: now
+    }).catch(e => console.error("Cloud Save Error", e));
 
+    // Immediately update UI
     setIsFlipped(false);
 
     setTimeout(() => {
       setFeedback(null);
-      if (type === 'wrong') {
-        setCurrentIndex(prev => prev + 1);
-      }
-      // For 'hard' or 'easy', the card will be filtered out of dueCards.
-      // The currentIndex will now point to the next card that shifted into this position.
-      // Wrap-around is handled by the useEffect below.
-    }, 400);
+      // Always move to next card after scoring
+      setCurrentIndex(prev => {
+        const nextIndex = prev + 1;
+        // Wrap around handled by useEffect
+        return nextIndex;
+      });
+    }, 300);
   };
 
   // Sync index if it goes out of bounds (e.g. after card removal)
