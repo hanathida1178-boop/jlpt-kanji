@@ -417,7 +417,27 @@ export default function App() {
                 </button>
               </div>
             </div>
+          </>
+        ) : (
+          /* Finished State */
+          <div className="flex-grow bg-white rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl flex flex-col items-center justify-center p-8 md:p-12 text-center border-[8px] md:border-[12px] border-indigo-50 overflow-hidden relative">
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 animate-pulse"></div>
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-indigo-50 rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mb-6 md:mb-10 shadow-inner rotate-12 transition-transform hover:rotate-0 duration-500">
+              <Trophy className="w-12 h-12 md:w-16 md:h-16 text-indigo-500" />
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-950 mb-2 md:mb-4 tracking-tighter">Deck Completed!</h2>
+            <p className="text-slate-400 mb-8 md:mb-12 text-xs md:text-sm font-bold max-w-[260px] leading-relaxed italic">
+              လေ့လာစရာတွေ အကုန်ပြီးသွားပါပြီ။ မနက်ဖြန်မှ ပြန်လာခဲ့ပေးပါ။
+            </p>
+            <button
+              onClick={() => setView('home')}
+              className="px-10 py-4 md:px-14 md:py-6 bg-indigo-600 text-white rounded-[1.5rem] md:rounded-[2.2rem] font-black shadow-2xl shadow-indigo-200 hover:bg-indigo-700 active:scale-95 transition-all uppercase tracking-[0.2em] text-[10px] md:text-[11px] italic"
+            >
+              Go to Dashboard
+            </button>
           </div>
+        )}
       </div>
-      );
+    </div>
+  );
 }
