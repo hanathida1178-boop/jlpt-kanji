@@ -259,7 +259,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 flex flex-col items-center p-3 md:p-8">
       <div className="max-w-xl w-full flex flex-col min-h-[90vh] md:min-h-0">
         {/* Navigation Header */}
-        <div className="flex justify-between items-center mb-4 md:mb-8">
+        <div className="flex justify-between items-center mb-2 md:mb-8">
           <button
             onClick={() => setView('home')}
             className="flex items-center gap-2 text-slate-400 font-black text-[10px] tracking-widest hover:text-indigo-600 transition-all uppercase"
@@ -274,7 +274,7 @@ export default function App() {
         </div>
 
         {/* Feedback Area */}
-        <div className="h-8 md:h-12 mb-2 md:mb-4 flex justify-center">
+        <div className="h-6 md:h-12 mb-1 md:mb-4 flex justify-center">
           <div className={`transition-all duration-300 ${feedback ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-95'}`}>
             {feedback && (
               <div className={`${feedback.color} bg-white shadow-xl border-2 px-6 py-2 rounded-full flex items-center gap-2 text-[10px] md:text-[11px] font-black italic`}>
@@ -294,7 +294,7 @@ export default function App() {
               >
                 {/* FRONT FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col items-center justify-center p-6 md:p-8 border-[8px] md:border-[12px] border-slate-100 shadow-inner group">
-                  <div className="text-[100px] md:text-[180px] leading-none font-black text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
+                  <div className="text-[100px] md:text-[180px] leading-none font-bold text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
                     {currentCard.kanji}
                   </div>
                   <div className="mt-8 md:mt-16 flex flex-col items-center gap-3">
@@ -303,39 +303,39 @@ export default function App() {
                 </div>
 
                 {/* BACK FACE */}
-                <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-8 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
-                  <div className="flex justify-between items-end mb-4 md:mb-8 border-b-2 border-slate-100 pb-4 md:pb-6">
-                    <span className="text-5xl md:text-7xl font-black text-indigo-900 leading-none">{currentCard.kanji}</span>
-                    <span className="text-[9px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-4 py-1.5 rounded-full shadow-sm">{activeDeck?.title}</span>
+                <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-6 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
+                  <div className="flex justify-between items-end mb-3 md:mb-8 border-b-2 border-slate-100 pb-3 md:pb-6">
+                    <span className="text-4xl md:text-7xl font-bold text-indigo-900 leading-none">{currentCard.kanji}</span>
+                    <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full shadow-sm">{activeDeck?.title}</span>
                   </div>
 
-                  <div className="space-y-6 md:space-y-10">
+                  <div className="space-y-4 md:space-y-10">
                     <section>
-                      <label className="text-[9px] md:text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] block mb-2 md:mb-3">မြန်မာအဓိပ္ပာယ်</label>
-                      <p className="text-2xl md:text-3xl text-slate-800 font-black leading-tight italic decoration-indigo-200 decoration-2">{currentCard.meaning}</p>
+                      <label className="text-[8px] md:text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] block mb-1 md:mb-3">မြန်မာအဓိပ္ပアယ်</label>
+                      <p className="text-xl md:text-3xl text-slate-800 font-bold leading-tight italic decoration-indigo-200 decoration-2">{currentCard.meaning}</p>
                     </section>
 
-                    <div className="grid grid-cols-2 gap-4 md:gap-8">
+                    <div className="grid grid-cols-2 gap-3 md:gap-8">
                       <section>
-                        <label className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1 md:mb-3">Onyomi</label>
-                        <p className="text-indigo-600 font-black text-xs md:text-base bg-indigo-50 px-4 md:px-5 py-2 md:py-3 rounded-2xl inline-block shadow-sm border border-indigo-100">{currentCard.onyomi}</p>
+                        <label className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1 md:mb-3">Onyomi</label>
+                        <p className="text-indigo-600 font-bold text-[11px] md:text-base bg-indigo-50 px-3 md:px-5 py-1.5 md:py-3 rounded-xl md:rounded-2xl inline-block shadow-sm border border-indigo-100">{currentCard.onyomi}</p>
                       </section>
                       <section>
-                        <label className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1 md:mb-3">Kunyomi</label>
-                        <p className="text-emerald-600 font-black text-xs md:text-base bg-emerald-50 px-4 md:px-5 py-2 md:py-3 rounded-2xl inline-block shadow-sm border border-emerald-100">{currentCard.kunyomi || "-"}</p>
+                        <label className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1 md:mb-3">Kunyomi</label>
+                        <p className="text-emerald-600 font-bold text-[11px] md:text-base bg-emerald-50 px-3 md:px-5 py-1.5 md:py-3 rounded-xl md:rounded-2xl inline-block shadow-sm border border-emerald-100">{currentCard.kunyomi || "-"}</p>
                       </section>
                     </div>
 
                     <section>
-                      <label className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-3 md:mb-5">ဥပမာ စာလုံးများ</label>
-                      <div className="space-y-2 md:space-y-4">
+                      <label className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 md:mb-5">ဥပမာ စာလုံးများ</label>
+                      <div className="space-y-1.5 md:space-y-4">
                         {currentCard.examples.map((ex, i) => (
-                          <div key={i} className="flex items-center justify-between bg-slate-50 p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] border border-slate-200 hover:bg-white hover:shadow-xl hover:border-indigo-200 transition-all duration-300 group/ex">
+                          <div key={i} className="flex items-center justify-between bg-slate-50 p-3 md:p-6 rounded-[1.2rem] md:rounded-[2rem] border border-slate-200 hover:bg-white hover:shadow-xl hover:border-indigo-200 transition-all duration-300 group/ex">
                             <div>
-                              <span className="font-black text-indigo-950 text-lg md:text-xl block mb-1">{ex.word}</span>
-                              <span className="text-slate-400 italic text-[10px] md:text-xs font-bold group-hover/ex:text-indigo-500">[{ex.reading}]</span>
+                              <span className="font-bold text-indigo-950 text-base md:text-xl block mb-0.5">{ex.word}</span>
+                              <span className="text-slate-400 italic text-[9px] md:text-xs font-bold group-hover/ex:text-indigo-500">[{ex.reading}]</span>
                             </div>
-                            <div className="text-slate-600 font-black italic text-xs md:text-sm text-right max-w-[120px] md:max-w-[140px] leading-snug">{ex.mean}</div>
+                            <div className="text-slate-600 font-bold italic text-[11px] md:text-sm text-right max-w-[120px] md:max-w-[140px] leading-snug">{ex.mean}</div>
                           </div>
                         ))}
                       </div>
@@ -346,7 +346,7 @@ export default function App() {
             </div>
 
             {/* Controls Area */}
-            <div className="h-24 md:h-32 mb-2 md:mb-10">
+            <div className="h-24 md:h-32 mb-0 md:mb-10">
               {isFlipped ? (
                 <div className="grid grid-cols-3 gap-3 md:gap-5 animate-in fade-in slide-in-from-bottom-8 duration-500">
                   <button
