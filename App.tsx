@@ -346,7 +346,7 @@ export default function App() {
             </div>
 
             {/* Controls Area */}
-            <div className="h-24 md:h-32 mb-4 md:mb-10">
+            <div className="h-24 md:h-32 mb-2 md:mb-10">
               {isFlipped ? (
                 <div className="grid grid-cols-3 gap-3 md:gap-5 animate-in fade-in slide-in-from-bottom-8 duration-500">
                   <button
@@ -372,9 +372,7 @@ export default function App() {
                   </button>
                 </div>
               ) : (
-                <div className="flex items-center justify-center h-full text-slate-400 text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] bg-white/40 rounded-[1.5rem] md:rounded-[2.5rem] border-4 border-dashed border-indigo-100 backdrop-blur-sm shadow-inner transition-all hover:border-indigo-300">
-                  Reveal to Score
-                </div>
+                <div className="flex items-center justify-center h-full bg-white/20 rounded-[1.5rem] md:rounded-[2.5rem] border-2 border-dashed border-white/40 backdrop-blur-sm transition-all" />
               )}
             </div>
           </>
