@@ -89,13 +89,14 @@ export default function App() {
   const currentCard = dueCards[currentIndex];
 
   const handleMark = (type: 'wrong' | 'hard' | 'easy') => {
-    if (!currentCard || !user) return;
+    if (!currentCard) return;
 
     console.log('=== handleMark called ===');
     console.log('Type:', type);
     console.log('Current card:', currentCard.kanji);
     console.log('Current index:', currentIndex);
     console.log('DueCards length:', dueCards.length);
+    console.log('User:', user ? 'logged in' : 'not logged in');
 
     const now = Date.now();
     let nextTime;
@@ -118,11 +119,15 @@ export default function App() {
     const newProgress = { ...userProgress, [currentCard.id]: nextTime };
     setUserProgress(newProgress);
 
-    // Save to Firebase in background (don't wait)
-    setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'progress'), {
-      reviewTimes: newProgress,
-      updatedAt: now
-    }).catch(e => console.error("Cloud Save Error", e));
+    // Save to Firebase only if user is logged in
+    if (user) {
+      setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'progress'), {
+        reviewTimes: newProgress,
+        updatedAt: now
+      }).catch(e => console.error("Cloud Save Error", e));
+    } else {
+      console.log('User not logged in, skipping Firebase save (local only)');
+    }
 
     // Immediately update UI
     setIsFlipped(false);
