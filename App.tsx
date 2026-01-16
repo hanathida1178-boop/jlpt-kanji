@@ -265,8 +265,8 @@ export default function App() {
 
   // STUDY VIEW
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center p-3 md:p-8">
-      <div className="max-w-xl w-full flex flex-col">
+    <div className="h-screen bg-slate-50 flex flex-col items-center p-3 md:p-8 overflow-hidden">
+      <div className="max-w-xl w-full flex flex-col h-full">
         {/* Navigation Header */}
         <div className="flex justify-between items-center mb-0 md:mb-8">
           <button
@@ -296,14 +296,14 @@ export default function App() {
         {dueCards.length > 0 ? (
           <>
             {/* Flashcard Container */}
-            <div className="relative h-[440px] md:h-[560px] w-full perspective-1000 mb-4 md:mb-10">
+            <div className="relative flex-grow md:h-[560px] w-full perspective-1000 mb-4 md:mb-10">
               <div
                 onClick={() => setIsFlipped(!isFlipped)}
                 className={`relative w-full h-full transition-all duration-700 transform-style-3d cursor-pointer rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl ${isFlipped ? 'rotate-y-180' : ''}`}
               >
                 {/* FRONT FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col items-center justify-center p-6 md:p-8 border-[8px] md:border-[12px] border-slate-100 shadow-inner group">
-                  <div className="text-[100px] md:text-[180px] leading-none font-normal text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
+                  <div className="text-[110px] md:text-[180px] leading-none font-light text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
                     {currentCard.kanji}
                   </div>
                   <div className="mt-8 md:mt-16 flex flex-col items-center gap-3">
@@ -314,7 +314,7 @@ export default function App() {
                 {/* BACK FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-6 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
                   <div className="flex justify-between items-end mb-3 md:mb-8 border-b-2 border-slate-100 pb-3 md:pb-6">
-                    <span className="text-4xl md:text-7xl font-normal text-indigo-900 leading-none">{currentCard.kanji}</span>
+                    <span className="text-4xl md:text-7xl font-light text-indigo-900 leading-none">{currentCard.kanji}</span>
                     <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full shadow-sm">{activeDeck?.title}</span>
                   </div>
 
@@ -355,7 +355,7 @@ export default function App() {
             </div>
 
             {/* Bottom Controls Group */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 pb-4">
               {/* Controls Area */}
               <div className="h-24 md:h-32">
                 {isFlipped ? (
@@ -390,7 +390,7 @@ export default function App() {
               {/* Bottom Bar Controls */}
               <div className="flex items-center justify-between px-2">
                 <button
-                  onClick={() => setCurrentIndex(prev => (prev - 1 + dueCards.length) % dueCards.length)}
+                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => (prev - 1 + dueCards.length) % dueCards.length); }}
                   disabled={dueCards.length <= 1}
                   className="p-4 md:p-6 bg-white rounded-full shadow-xl text-slate-300 active:bg-indigo-50 active:scale-90 transition-all border-2 border-slate-50 disabled:opacity-30"
                 >
@@ -409,7 +409,7 @@ export default function App() {
                 </div>
 
                 <button
-                  onClick={() => setCurrentIndex(prev => (prev + 1) % dueCards.length)}
+                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => (prev + 1) % dueCards.length); }}
                   disabled={dueCards.length <= 1}
                   className="p-4 md:p-6 bg-indigo-600 rounded-full shadow-2xl text-white active:scale-90 transition-all shadow-indigo-300 hover:bg-indigo-700 disabled:bg-slate-300"
                 >
