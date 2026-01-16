@@ -261,7 +261,7 @@ export default function App() {
   // STUDY VIEW
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center p-3 md:p-8">
-      <div className="max-w-xl w-full flex flex-col min-h-[90vh] md:min-h-0">
+      <div className="max-w-xl w-full flex flex-col">
         {/* Navigation Header */}
         <div className="flex justify-between items-center mb-0 md:mb-8">
           <button
@@ -401,7 +401,7 @@ export default function App() {
         )}
 
         {/* Bottom Bar Controls */}
-        <div className="flex items-center justify-between px-2 mt-auto md:mt-0">
+        <div className="flex items-center justify-between px-2 mt-4 md:mt-0">
           <button
             onClick={() => setCurrentIndex(prev => (prev - 1 + dueCards.length) % dueCards.length)}
             disabled={dueCards.length <= 1}
