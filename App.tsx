@@ -287,7 +287,7 @@ export default function App() {
         {dueCards.length > 0 ? (
           <>
             {/* Flashcard Container */}
-            <div className="relative h-[400px] md:h-[560px] w-full perspective-1000 mb-6 md:mb-10">
+            <div className="relative h-[440px] md:h-[560px] w-full perspective-1000 mb-4 md:mb-10">
               <div
                 onClick={() => setIsFlipped(!isFlipped)}
                 className={`relative w-full h-full transition-all duration-700 transform-style-3d cursor-pointer rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl ${isFlipped ? 'rotate-y-180' : ''}`}
