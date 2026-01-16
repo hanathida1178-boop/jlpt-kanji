@@ -122,22 +122,27 @@ export default function App() {
 
     setIsFlipped(false);
 
-    // Animation delay before moving to next card
+    // Give a short moment for the flip animation to start before changing contents
     setTimeout(() => {
       setFeedback(null);
-      // If it stays in deck ('wrong'), we must advance.
-      // If it leaves deck ('hard'/'easy'), the list shifts and the current index 
-      // now points to the next card. We only reset if we hit the end.
-      if (type === 'wrong') {
-        setCurrentIndex((prev) => (dueCards.length > 1 ? (prev + 1) % dueCards.length : 0));
-      } else {
-        // Since the current card is removed, the remaining cards shift down.
-        // We only need to reset index if we were at the very last card.
-        if (currentIndex >= dueCards.length - 1) {
-          setCurrentIndex(0);
+
+      // If 'wrong', we want to go to the next card in the current queue.
+      // If 'hard'/'easy', the current card is removed, so the list shifts.
+      // We only need to increment if it's 'wrong'. 
+      // Functional update to avoid closure issues with outdated values.
+      setCurrentIndex((prev) => {
+        const newLength = type === 'wrong' ? dueCards.length : dueCards.length - 1;
+        if (newLength <= 0) return 0;
+
+        if (type === 'wrong') {
+          return (prev + 1) % newLength;
+        } else {
+          // Card removed. If we were at the last card, go to start.
+          if (prev >= newLength) return 0;
+          return prev;
         }
-      }
-    }, 400);
+      });
+    }, 300);
   };
 
   const handleUploadDeck = async () => {
@@ -298,7 +303,7 @@ export default function App() {
               >
                 {/* FRONT FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col items-center justify-center p-6 md:p-8 border-[8px] md:border-[12px] border-slate-100 shadow-inner group">
-                  <div className="text-[100px] md:text-[180px] leading-none font-medium text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
+                  <div className="text-[100px] md:text-[180px] leading-none font-normal text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
                     {currentCard.kanji}
                   </div>
                   <div className="mt-8 md:mt-16 flex flex-col items-center gap-3">
@@ -309,7 +314,7 @@ export default function App() {
                 {/* BACK FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-6 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
                   <div className="flex justify-between items-end mb-3 md:mb-8 border-b-2 border-slate-100 pb-3 md:pb-6">
-                    <span className="text-4xl md:text-7xl font-medium text-indigo-900 leading-none">{currentCard.kanji}</span>
+                    <span className="text-4xl md:text-7xl font-normal text-indigo-900 leading-none">{currentCard.kanji}</span>
                     <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full shadow-sm">{activeDeck?.title}</span>
                   </div>
 
@@ -349,87 +354,70 @@ export default function App() {
               </div>
             </div>
 
-            {/* Controls Area */}
-            <div className="h-24 md:h-32 mb-0 md:mb-10">
-              {isFlipped ? (
-                <div className="grid grid-cols-3 gap-3 md:gap-5 animate-in fade-in slide-in-from-bottom-8 duration-500">
-                  <button
-                    onClick={(e) => { e.stopPropagation(); handleMark('wrong'); }}
-                    className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-red-500 hover:text-white border-2 border-red-50 text-red-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-red-50 active:scale-90 group"
-                  >
-                    <XCircle className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
-                    <span className="text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">မရသေး</span>
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); handleMark('hard'); }}
-                    className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-amber-500 hover:text-white border-2 border-amber-50 text-amber-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-amber-50 active:scale-90 group"
-                  >
-                    <AlertCircle className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
-                    <span className="text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">သိရုံပဲ</span>
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); handleMark('easy'); }}
-                    className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-emerald-500 hover:text-white border-2 border-emerald-50 text-emerald-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-emerald-50 active:scale-90 group"
-                  >
-                    <CheckCircle2 className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
-                    <span className="text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">ကျွမ်းကျင်</span>
-                  </button>
+            {/* Bottom Controls Group */}
+            <div className="flex flex-col gap-4">
+              {/* Controls Area */}
+              <div className="h-24 md:h-32">
+                {isFlipped ? (
+                  <div className="grid grid-cols-3 gap-3 md:gap-5 animate-in fade-in slide-in-from-bottom-8 duration-500">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleMark('wrong'); }}
+                      className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-red-500 hover:text-white border-2 border-red-50 text-red-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-red-50 active:scale-90 group"
+                    >
+                      <XCircle className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
+                      <span className="text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">မရသေး</span>
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleMark('hard'); }}
+                      className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-amber-500 hover:text-white border-2 border-amber-50 text-amber-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-amber-50 active:scale-90 group"
+                    >
+                      <AlertCircle className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
+                      <span className="text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">သိရုံပဲ</span>
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleMark('easy'); }}
+                      className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-emerald-500 hover:text-white border-2 border-emerald-50 text-emerald-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-emerald-50 active:scale-90 group"
+                    >
+                      <CheckCircle2 className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
+                      <span className="text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">ကျွမ်းကျင်</span>
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center h-full bg-white/20 rounded-[1.5rem] md:rounded-[2.5rem] border-2 border-dashed border-white/40 backdrop-blur-sm transition-all" />
+                )}
+              </div>
+
+              {/* Bottom Bar Controls */}
+              <div className="flex items-center justify-between px-2">
+                <button
+                  onClick={() => setCurrentIndex(prev => (prev - 1 + dueCards.length) % dueCards.length)}
+                  disabled={dueCards.length <= 1}
+                  className="p-4 md:p-6 bg-white rounded-full shadow-xl text-slate-300 active:bg-indigo-50 active:scale-90 transition-all border-2 border-slate-50 disabled:opacity-30"
+                >
+                  <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+                </button>
+
+                <div className="flex flex-col items-center gap-1">
+                  <div className="flex gap-1.5">
+                    {[...Array(Math.min(5, dueCards.length))].map((_, i) => (
+                      <div key={i} className={`w-1 md:w-1.5 h-1 md:h-1.5 rounded-full transition-all duration-300 ${i === currentIndex % 5 ? 'bg-indigo-600 w-3 md:w-4' : 'bg-slate-200'}`} />
+                    ))}
+                  </div>
+                  <span className="text-[9px] md:text-[10px] font-black text-slate-300 tracking-[0.2em] md:tracking-[0.3em] uppercase italic mt-1 md:mt-2">
+                    Card {dueCards.length > 0 ? currentIndex + 1 : 0} of {dueCards.length}
+                  </span>
                 </div>
-              ) : (
-                <div className="flex items-center justify-center h-full bg-white/20 rounded-[1.5rem] md:rounded-[2.5rem] border-2 border-dashed border-white/40 backdrop-blur-sm transition-all" />
-              )}
+
+                <button
+                  onClick={() => setCurrentIndex(prev => (prev + 1) % dueCards.length)}
+                  disabled={dueCards.length <= 1}
+                  className="p-4 md:p-6 bg-indigo-600 rounded-full shadow-2xl text-white active:scale-90 transition-all shadow-indigo-300 hover:bg-indigo-700 disabled:bg-slate-300"
+                >
+                  <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+                </button>
+              </div>
             </div>
-          </>
-        ) : (
-          /* Finished State */
-          <div className="h-[500px] bg-white rounded-[3.5rem] shadow-2xl flex flex-col items-center justify-center p-12 text-center border-[12px] border-indigo-50 mb-10 overflow-hidden relative">
-            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 animate-pulse"></div>
-            <div className="w-32 h-32 bg-indigo-50 rounded-[2.5rem] flex items-center justify-center mb-10 shadow-inner rotate-12 transition-transform hover:rotate-0 duration-500">
-              <Trophy className="w-16 h-16 text-indigo-500" />
-            </div>
-            <h2 className="text-5xl font-black text-slate-950 mb-4 tracking-tighter">Deck Completed!</h2>
-            <p className="text-slate-400 mb-12 text-sm font-bold max-w-[260px] leading-relaxed italic">
-              လေ့လာစရာတွေ အကုန်ပြီးသွားပါပြီ။ မနက်ဖြန်မှ ပြန်လာခဲ့ပေးပါ။
-            </p>
-            <button
-              onClick={() => setView('home')}
-              className="px-14 py-6 bg-indigo-600 text-white rounded-[2.2rem] font-black shadow-2xl shadow-indigo-200 hover:bg-indigo-700 active:scale-95 transition-all uppercase tracking-[0.2em] text-[11px] italic"
-            >
-              Go to Dashboard
-            </button>
           </div>
-        )}
-
-        {/* Bottom Bar Controls */}
-        <div className="flex items-center justify-between px-2 mt-4 md:mt-0">
-          <button
-            onClick={() => setCurrentIndex(prev => (prev - 1 + dueCards.length) % dueCards.length)}
-            disabled={dueCards.length <= 1}
-            className="p-4 md:p-6 bg-white rounded-full shadow-xl text-slate-300 active:bg-indigo-50 active:scale-90 transition-all border-2 border-slate-50 disabled:opacity-30"
-          >
-            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
-          </button>
-
-          <div className="flex flex-col items-center gap-1">
-            <div className="flex gap-1.5">
-              {[...Array(Math.min(5, dueCards.length))].map((_, i) => (
-                <div key={i} className={`w-1 md:w-1.5 h-1 md:h-1.5 rounded-full transition-all duration-300 ${i === currentIndex % 5 ? 'bg-indigo-600 w-3 md:w-4' : 'bg-slate-200'}`} />
-              ))}
-            </div>
-            <span className="text-[9px] md:text-[10px] font-black text-slate-300 tracking-[0.2em] md:tracking-[0.3em] uppercase italic mt-1 md:mt-2">
-              Card {dueCards.length > 0 ? currentIndex + 1 : 0} of {dueCards.length}
-            </span>
-          </div>
-
-          <button
-            onClick={() => setCurrentIndex(prev => (prev + 1) % dueCards.length)}
-            disabled={dueCards.length <= 1}
-            className="p-4 md:p-6 bg-indigo-600 rounded-full shadow-2xl text-white active:scale-90 transition-all shadow-indigo-300 hover:bg-indigo-700 disabled:bg-slate-300"
-          >
-            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
-          </button>
-        </div>
       </div>
-    </div>
-  );
+      );
 }
