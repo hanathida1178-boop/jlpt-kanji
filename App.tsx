@@ -90,6 +90,13 @@ export default function App() {
 
   const handleMark = (type: 'wrong' | 'hard' | 'easy') => {
     if (!currentCard || !user) return;
+
+    console.log('=== handleMark called ===');
+    console.log('Type:', type);
+    console.log('Current card:', currentCard.kanji);
+    console.log('Current index:', currentIndex);
+    console.log('DueCards length:', dueCards.length);
+
     const now = Date.now();
     let nextTime;
 
@@ -122,12 +129,30 @@ export default function App() {
 
     setTimeout(() => {
       setFeedback(null);
-      // Always move to next card after scoring
-      setCurrentIndex(prev => {
-        const nextIndex = prev + 1;
-        // Wrap around handled by useEffect
-        return nextIndex;
-      });
+
+      // WRONG: Card stays in deck, move to next position
+      // HARD/EASY: Card will be filtered out, so next card shifts into current position
+      if (type === 'wrong') {
+        console.log('Moving to next card (wrong)');
+        setCurrentIndex(prev => {
+          const next = (prev + 1) % dueCards.length;
+          console.log('New index (wrong):', next);
+          return next;
+        });
+      } else {
+        console.log('Staying at same index (hard/easy) - card will be removed from dueCards');
+        // For hard/easy, don't change index - the list will shrink and next card appears at current index
+        // But we need to handle the case where we were at the last card
+        setCurrentIndex(prev => {
+          // If we're going to be out of bounds after card removal, go to start
+          if (prev >= dueCards.length - 1) {
+            console.log('Was at last card, going to 0');
+            return 0;
+          }
+          console.log('Staying at index:', prev);
+          return prev;
+        });
+      }
     }, 300);
   };
 
