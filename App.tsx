@@ -194,7 +194,7 @@ export default function App() {
                 <span className="text-xs font-black text-indigo-500 uppercase tracking-widest">N4 Mastering</span>
               </div>
               <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                Kanji SRS <br />
+                Kanji Saya <br />
                 <span className="text-slate-400 underline decoration-indigo-500 decoration-4 underline-offset-8 font-extrabold italic">Burmese Edition</span>
               </h1>
             </div>
