@@ -3,7 +3,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import {
   ChevronLeft, ChevronRight, BookOpen, XCircle, AlertCircle,
   CheckCircle2, Clock, Plus, LayoutGrid, Upload, X, Loader2, Sparkles,
-  Trophy, Book, Star, PenTool
+  Trophy, Book, Star, PenTool, Download
 } from 'lucide-react';
 import { romajiToHiragana } from './utils';
 import { StrokeOrderModal } from './StrokeOrderModal';
@@ -32,6 +32,8 @@ export default function App() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [uploadText, setUploadText] = useState("");
   const [isStrokeOrderOpen, setIsStrokeOrderOpen] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstallBtn, setShowInstallBtn] = useState(false);
 
   // Load Data from LocalStorage
   useEffect(() => {
@@ -53,6 +55,31 @@ export default function App() {
       setTimeout(() => setLoading(false), 800);
     }
   }, []);
+
+  // PWA Install Logic
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallBtn(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setShowInstallBtn(false);
+    }
+    setDeferredPrompt(null);
+  };
 
   const activeDeck = useMemo(() => decks.find(d => d.id === activeDeckId), [decks, activeDeckId]);
   const dueCards = useMemo(() => {
@@ -167,12 +194,22 @@ export default function App() {
                 </h1>
               </div>
             </div>
-            <button
-              onClick={() => setIsUploadModalOpen(true)}
-              className="bg-white border-2 border-indigo-50 text-indigo-600 p-4 rounded-3xl shadow-lg hover:shadow-indigo-100 hover:border-indigo-400 active:scale-95 transition-all"
-            >
-              <Plus className="w-6 h-6" />
-            </button>
+            <div className="flex gap-2">
+              {showInstallBtn && (
+                <button
+                  onClick={handleInstallClick}
+                  className="bg-indigo-600 text-white px-5 py-3 rounded-2xl shadow-lg hover:bg-indigo-700 active:scale-95 transition-all flex items-center gap-2 text-xs font-black uppercase tracking-widest"
+                >
+                  <Download className="w-4 h-4" /> Install App
+                </button>
+              )}
+              <button
+                onClick={() => setIsUploadModalOpen(true)}
+                className="bg-white border-2 border-indigo-50 text-indigo-600 p-4 rounded-[1.5rem] shadow-lg hover:shadow-indigo-100 hover:border-indigo-400 active:scale-95 transition-all"
+              >
+                <Plus className="w-6 h-6" />
+              </button>
+            </div>
           </header>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
