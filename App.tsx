@@ -7,14 +7,6 @@ import {
 } from 'lucide-react';
 import { romajiToHiragana } from './utils';
 import { StrokeOrderModal } from './StrokeOrderModal';
-import {
-  onAuthStateChanged,
-  signInAnonymously,
-  signInWithCustomToken,
-  User
-} from 'firebase/auth';
-import { doc, setDoc, onSnapshot } from 'firebase/firestore';
-import { auth, db, appId } from './firebase';
 import { DEFAULT_DECKS } from './constants';
 import { Deck, KanjiCard, UserProgress, ViewState, FeedbackType } from './types';
 
@@ -29,7 +21,6 @@ const ProgressBar = ({ current, total }: { current: number; total: number }) => 
 );
 
 export default function App() {
-  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<ViewState>('home');
   const [decks, setDecks] = useState<Deck[]>(DEFAULT_DECKS);
@@ -42,45 +33,26 @@ export default function App() {
   const [uploadText, setUploadText] = useState("");
   const [isStrokeOrderOpen, setIsStrokeOrderOpen] = useState(false);
 
-  // Auth Initialization
+  // Load Data from LocalStorage
   useEffect(() => {
-    const initAuth = async () => {
-      try {
-        const initialToken = (window as any).__initial_auth_token;
-        if (initialToken) {
-          await signInWithCustomToken(auth, initialToken);
-        } else {
-          await signInAnonymously(auth);
-        }
-      } catch (err) {
-        console.error("Auth Error", err);
-      } finally {
-        setLoading(false);
+    try {
+      const savedProgress = localStorage.getItem('kanji-saya-progress');
+      if (savedProgress) {
+        setUserProgress(JSON.parse(savedProgress));
       }
-    };
-    initAuth();
-    const unsubscribe = onAuthStateChanged(auth, setUser);
-    return () => unsubscribe();
-  }, []);
 
-  // Sync Progress and Custom Decks
-  useEffect(() => {
-    if (!user) return;
-    const progressRef = doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'progress');
-    const unsubProgress = onSnapshot(progressRef, (snap) => {
-      if (snap.exists()) setUserProgress(snap.data().reviewTimes || {});
-    });
-
-    const decksRef = doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'userDecks');
-    const unsubDecks = onSnapshot(decksRef, (snap) => {
-      if (snap.exists()) {
-        const customDecks = snap.data().decks || [];
+      const savedDecks = localStorage.getItem('kanji-saya-custom-decks');
+      if (savedDecks) {
+        const customDecks = JSON.parse(savedDecks);
         setDecks([...DEFAULT_DECKS, ...customDecks]);
       }
-    });
-
-    return () => { unsubProgress(); unsubDecks(); };
-  }, [user]);
+    } catch (err) {
+      console.error("Storage Load Error", err);
+    } finally {
+      // Small timeout to show the nice loader for a moment
+      setTimeout(() => setLoading(false), 800);
+    }
+  }, []);
 
   const activeDeck = useMemo(() => decks.find(d => d.id === activeDeckId), [decks, activeDeckId]);
   const dueCards = useMemo(() => {
@@ -115,13 +87,8 @@ export default function App() {
     const newProgress = { ...userProgress, [currentCard.id]: nextTime };
     setUserProgress(newProgress);
 
-    // Save to Firebase only if user is logged in
-    if (user) {
-      setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'progress'), {
-        reviewTimes: newProgress,
-        updatedAt: now
-      }).catch(e => console.error("Cloud Save Error", e));
-    }
+    // Save to LocalStorage
+    localStorage.setItem('kanji-saya-progress', JSON.stringify(newProgress));
 
     // Immediately update UI
     setIsFlipped(false);
@@ -157,17 +124,17 @@ export default function App() {
     }
   }, [dueCards.length, currentIndex]);
 
-  const handleUploadDeck = async () => {
-    if (!uploadText || !user) return;
+  const handleUploadDeck = () => {
+    if (!uploadText) return;
     try {
       const newDeck = JSON.parse(uploadText);
       if (!newDeck.id || !newDeck.cards) throw new Error("Invalid format");
 
-      const customDecksRef = doc(db, 'artifacts', appId, 'users', user.uid, 'data', 'userDecks');
       const existingCustomDecks = decks.filter(d => !DEFAULT_DECKS.some(def => def.id === d.id));
       const updatedUserDecks = [...existingCustomDecks.filter(d => d.id !== newDeck.id), newDeck];
 
-      await setDoc(customDecksRef, { decks: updatedUserDecks });
+      localStorage.setItem('kanji-saya-custom-decks', JSON.stringify(updatedUserDecks));
+      setDecks([...DEFAULT_DECKS, ...updatedUserDecks]);
       setIsUploadModalOpen(false);
       setUploadText("");
     } catch (e) {
