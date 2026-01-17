@@ -304,9 +304,9 @@ export default function App() {
                       <span className="text-5xl md:text-7xl font-bold text-indigo-900 leading-none">{currentCard.kanji}</span>
                       <button
                         onClick={(e) => { e.stopPropagation(); setIsStrokeOrderOpen(true); }}
-                        className="mt-3 flex items-center gap-2.5 text-[13px] font-black text-indigo-600 uppercase tracking-widest hover:text-indigo-800 transition-colors bg-indigo-50/50 px-4 py-2 rounded-xl border border-indigo-100/50 active:scale-95"
+                        className="mt-3 flex items-center gap-2.5 text-[13px] font-black text-white uppercase tracking-widest hover:bg-indigo-700 transition-all bg-indigo-600 px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-100 active:scale-95 border-none"
                       >
-                        <PenTool className="w-4 h-4" /> ရေးနည်း
+                        <PenTool className="w-4 h-4 text-indigo-100" /> ရေးနည်း
                       </button>
                     </div>
                     <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full shadow-sm self-start">{activeDeck?.title}</span>
@@ -359,21 +359,21 @@ export default function App() {
                       className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-red-500 hover:text-white border-2 border-red-50 text-red-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-red-50 active:scale-90 group"
                     >
                       <XCircle className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
-                      <span className="text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">မရသေး</span>
+                      <span className="text-[11px] md:text-[13px] font-black uppercase italic tracking-widest">မရသေး</span>
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleMark('hard'); }}
                       className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-amber-500 hover:text-white border-2 border-amber-50 text-amber-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-amber-50 active:scale-90 group"
                     >
                       <AlertCircle className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
-                      <span className="text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">သိရုံပဲ</span>
+                      <span className="text-[11px] md:text-[13px] font-black uppercase italic tracking-widest">သိရုံပဲ</span>
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleMark('easy'); }}
                       className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-emerald-500 hover:text-white border-2 border-emerald-50 text-emerald-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-emerald-50 active:scale-90 group"
                     >
                       <CheckCircle2 className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
-                      <span className="text-[9px] md:text-[10px] font-black uppercase italic tracking-widest">ကျွမ်းကျင်</span>
+                      <span className="text-[11px] md:text-[13px] font-black uppercase italic tracking-widest">ကျွမ်းကျင်</span>
                     </button>
                   </div>
                 ) : (
