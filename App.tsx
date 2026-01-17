@@ -215,7 +215,7 @@ export default function App() {
             })}
           </div>
           <div className="mt-8 mb-4 text-center text-[9px] font-black text-slate-300 uppercase tracking-widest italic">
-            v1.0.2 • Sync: Local
+            v1.0.6 • Sync: Local
           </div>
         </div>
 
