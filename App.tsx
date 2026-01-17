@@ -334,31 +334,31 @@ export default function App() {
 
                   <div className="space-y-4 md:space-y-10">
                     <section>
-                      <label className="text-[8px] md:text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] block mb-1 md:mb-3">မြန်မာအဓိပ္ပာယ်</label>
-                      <p className="text-xl md:text-3xl text-slate-800 font-bold leading-tight italic decoration-indigo-200 decoration-2">{currentCard.meaning}</p>
+                      <label className="text-[10px] md:text-[12px] font-black text-indigo-400 uppercase tracking-[0.2em] block mb-1 md:mb-3">မြန်မာအဓိပ္ပာယ်</label>
+                      <p className="text-2xl md:text-3xl text-slate-800 font-bold leading-tight italic decoration-indigo-200 decoration-2">{currentCard.meaning}</p>
                     </section>
 
                     <div className="grid grid-cols-2 gap-3 md:gap-8">
                       <section>
-                        <label className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1 md:mb-3">Onyomi</label>
-                        <p className="text-indigo-600 font-bold text-[11px] md:text-base bg-indigo-50 px-3 md:px-5 py-1.5 md:py-3 rounded-xl md:rounded-2xl inline-block shadow-sm border border-indigo-100">{currentCard.onyomi}</p>
+                        <label className="text-[10px] md:text-[12px] font-black text-slate-400 uppercase tracking-widest block mb-1 md:mb-3">Onyomi</label>
+                        <p className="text-indigo-600 font-bold text-sm md:text-base bg-indigo-50 px-3 md:px-5 py-1.5 md:py-3 rounded-xl md:rounded-2xl inline-block shadow-sm border border-indigo-100">{currentCard.onyomi}</p>
                       </section>
                       <section>
-                        <label className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1 md:mb-3">Kunyomi</label>
-                        <p className="text-emerald-600 font-bold text-[11px] md:text-base bg-emerald-50 px-3 md:px-5 py-1.5 md:py-3 rounded-xl md:rounded-2xl inline-block shadow-sm border border-emerald-100">{currentCard.kunyomi || "-"}</p>
+                        <label className="text-[10px] md:text-[12px] font-black text-slate-400 uppercase tracking-widest block mb-1 md:mb-3">Kunyomi</label>
+                        <p className="text-emerald-600 font-bold text-sm md:text-base bg-emerald-50 px-3 md:px-5 py-1.5 md:py-3 rounded-xl md:rounded-2xl inline-block shadow-sm border border-emerald-100">{currentCard.kunyomi || "-"}</p>
                       </section>
                     </div>
 
                     <section>
-                      <label className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 md:mb-5">ဥပမာ စာလုံးများ</label>
+                      <label className="text-[10px] md:text-[12px] font-black text-slate-400 uppercase tracking-widest block mb-2 md:mb-5">ဥပမာ စာလုံးများ</label>
                       <div className="space-y-1.5 md:space-y-4">
                         {currentCard.examples.map((ex, i) => (
                           <div key={i} className="flex items-center justify-between bg-slate-50 p-3 md:p-6 rounded-[1.2rem] md:rounded-[2rem] border border-slate-200 hover:bg-white hover:shadow-xl hover:border-indigo-200 transition-all duration-300 group/ex">
                             <div>
-                              <span className="font-bold text-indigo-950 text-base md:text-xl block mb-0.5">{ex.word}</span>
-                              <span className="text-slate-400 italic text-[9px] md:text-xs font-bold group-hover/ex:text-indigo-500">[{ex.reading}]</span>
+                              <span className="font-bold text-indigo-950 text-lg md:text-xl block mb-0.5">{ex.word}</span>
+                              <span className="text-slate-400 italic text-xs md:text-sm font-bold group-hover/ex:text-indigo-500">[{ex.reading}]</span>
                             </div>
-                            <div className="text-slate-600 font-bold italic text-[11px] md:text-sm text-right max-w-[120px] md:max-w-[140px] leading-snug">{ex.mean}</div>
+                            <div className="text-slate-600 font-bold italic text-sm md:text-sm text-right max-w-[120px] md:max-w-[140px] leading-snug">{ex.mean}</div>
                           </div>
                         ))}
                       </div>
