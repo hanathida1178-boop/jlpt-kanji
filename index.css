@@ -10,8 +10,8 @@
 }
 
 .kanji-heavy {
-  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "Meiryo", "sans-serif";
-  font-weight: 900;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
 }
 
 .perspective-1000 {
