@@ -3,7 +3,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import {
   ChevronLeft, ChevronRight, BookOpen, XCircle, AlertCircle,
   CheckCircle2, Clock, Plus, LayoutGrid, Upload, X, Loader2, Sparkles,
-  Trophy, Book, Star, PenTool, Download
+  Trophy, Book, Star, PenTool, Download, Info
 } from 'lucide-react';
 import { romajiToHiragana } from './utils';
 import { StrokeOrderModal } from './StrokeOrderModal';
@@ -20,6 +20,66 @@ const ProgressBar = ({ current, total }: { current: number; total: number }) => 
   </div>
 );
 
+const SRSModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-2xl rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-12 shadow-2xl relative animate-in zoom-in duration-300 max-h-[90vh] overflow-y-auto">
+        <button
+          onClick={onClose}
+          className="absolute top-6 right-6 p-2 hover:bg-slate-50 rounded-full transition-colors"
+        >
+          <X className="w-6 h-6 text-slate-400" />
+        </button>
+
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 shadow-inner">
+            <Info className="w-6 h-6" />
+          </div>
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">What is SRS?</h2>
+        </div>
+
+        <div className="space-y-8">
+          <section>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="bg-indigo-100 text-indigo-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">မြန်မာ</span>
+            </div>
+            <p className="text-slate-600 font-bold leading-relaxed text-sm md:text-base">
+              Spaced Repetition System (SRS) ဆိုသည်မှာ သင်ယူပြီးသား အချက်အလက်များကို မှတ်ဉာဏ်ထဲတွင် ရေရှည်စွဲမြဲနေစေရန်အတွက် ပြန်လည်လေ့ကျင့်ရမည့် အချိန်အပိုင်းအခြားကို စနစ်တကျ တိုးမြှင့်ပေးသည့် နည်းလမ်းဖြစ်သည်။ Kanji Saya တွင် သင်ကျွမ်းကျင်သော စာလုံးများကို နည်းနည်းချင်းသာ ပြသပေးပြီး၊ ခက်ขဲသော စာလုံးများကိုမူ ခဏခဏ ပြသပေးခြင်းဖြင့် အထိရောက်ဆုံး မှတ်သားနိုင်အောင် ကူညီပေးပါသည်။
+            </p>
+          </section>
+
+          <section>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="bg-amber-100 text-amber-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">English</span>
+            </div>
+            <p className="text-slate-600 font-medium leading-relaxed italic text-sm md:text-base">
+              Spaced Repetition System (SRS) is a learning technique that uses increasing intervals between subsequent reviews of previously learned material to exploit the psychological spacing effect. In Kanji Saya, cards you find easy will appear less frequently, while harder ones will appear more often to ensure they stick in your long-term memory.
+            </p>
+          </section>
+
+          <section>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="bg-emerald-100 text-emerald-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">日本語</span>
+            </div>
+            <p className="text-slate-600 font-medium leading-relaxed text-sm md:text-base">
+              間隔反復（SRS）は、以前に学習した内容を復習する際、その間隔を徐々に延ばしていく学習技法です。人間の記憶の仕組みを利用し、効率的に長期記憶へ定着させます。「Kanji Saya」では、覚えやすい漢字は表示回数を減らし、苦手な漢字は頻繁に表示することで、効率的な学習をサポートします。
+            </p>
+          </section>
+        </div>
+
+        <button
+          onClick={onClose}
+          className="w-full mt-10 py-5 bg-indigo-600 text-white rounded-[1.8rem] font-black shadow-xl shadow-indigo-100 hover:bg-indigo-700 active:scale-95 transition-all uppercase tracking-widest text-xs"
+        >
+          Got it!
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<ViewState>('home');
@@ -32,6 +92,7 @@ export default function App() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [uploadText, setUploadText] = useState("");
   const [isStrokeOrderOpen, setIsStrokeOrderOpen] = useState(false);
+  const [isSRSModalOpen, setIsSRSModalOpen] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showInstallBtn, setShowInstallBtn] = useState(false);
 
@@ -192,6 +253,13 @@ export default function App() {
                 <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
                   Kanji Saya
                 </h1>
+                <button
+                  onClick={() => setIsSRSModalOpen(true)}
+                  className="mt-1 flex items-center gap-1.5 text-indigo-500 hover:text-indigo-700 transition-colors"
+                >
+                  <Info className="w-3.5 h-3.5" />
+                  <span className="text-[10px] font-black uppercase tracking-widest border-b border-indigo-200">What is SRS?</span>
+                </button>
               </div>
             </div>
             <div className="flex gap-2">
@@ -252,7 +320,7 @@ export default function App() {
             })}
           </div>
           <div className="mt-8 mb-4 text-center text-[9px] font-black text-slate-300 uppercase tracking-widest italic">
-            v1.1.0 • Sync: Local
+            v1.2.0 • Sync: Local
           </div>
         </div>
 
@@ -280,6 +348,10 @@ export default function App() {
             </div>
           </div>
         )}
+        <SRSModal
+          isOpen={isSRSModalOpen}
+          onClose={() => setIsSRSModalOpen(false)}
+        />
       </div>
     );
   }
