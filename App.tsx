@@ -5,6 +5,7 @@ import {
   CheckCircle2, Clock, Plus, LayoutGrid, Upload, X, Loader2, Sparkles,
   Trophy, Book, Star
 } from 'lucide-react';
+import { romajiToHiragana } from './utils';
 import {
   onAuthStateChanged,
   signInAnonymously,
@@ -356,7 +357,7 @@ export default function App() {
                           <div key={i} className="flex items-center justify-between bg-slate-50 p-3 md:p-6 rounded-[1.2rem] md:rounded-[2rem] border border-slate-200 hover:bg-white hover:shadow-xl hover:border-indigo-200 transition-all duration-300 group/ex">
                             <div>
                               <span className="font-bold text-indigo-950 text-lg md:text-xl block mb-0.5">{ex.word}</span>
-                              <span className="text-slate-400 italic text-xs md:text-sm font-bold group-hover/ex:text-indigo-500">[{ex.reading}]</span>
+                              <span className="text-slate-400 italic text-xs md:text-sm font-bold group-hover/ex:text-indigo-500">[{romajiToHiragana(ex.reading)}]</span>
                             </div>
                             <div className="text-slate-600 font-bold italic text-sm md:text-sm text-right max-w-[120px] md:max-w-[140px] leading-snug">{ex.mean}</div>
                           </div>
