@@ -26,4 +26,7 @@ export interface UserProgress {
 
 export type ViewState = 'home' | 'study';
 
-export type FeedbackType = 'wrong' | 'hard' | 'easy' | null;
+export interface FeedbackType {
+  msg: string;
+  color: string;
+}
