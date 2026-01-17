@@ -188,14 +188,17 @@ export default function App() {
       <div className="min-h-screen bg-slate-50 p-4 md:p-12 flex flex-col items-center">
         <div className="max-w-2xl w-full">
           <header className="flex justify-between items-start mb-6 md:mb-12">
-            <div>
-              <div className="flex items-center gap-2 mb-1 md:mb-2">
-                <Sparkles className="w-5 h-5 text-indigo-500" />
-                <span className="text-xs font-black text-indigo-500 uppercase tracking-widest">N4 Mastering</span>
+            <div className="flex items-center gap-4">
+              <img src="/app-icon.png" alt="Kanji Saya Icon" className="w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-lg border-2 border-white" />
+              <div>
+                <div className="flex items-center gap-2 mb-1 md:mb-2">
+                  <Sparkles className="w-5 h-5 text-indigo-500" />
+                  <span className="text-xs font-black text-indigo-500 uppercase tracking-widest">N4 Mastering</span>
+                </div>
+                <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                  Kanji <span className="text-indigo-600 underline decoration-indigo-500 decoration-4 underline-offset-8">Saya</span>
+                </h1>
               </div>
-              <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                Kanji <span className="text-indigo-600 underline decoration-indigo-500 decoration-4 underline-offset-8">Saya</span>
-              </h1>
             </div>
             <button
               onClick={() => setIsUploadModalOpen(true)}
