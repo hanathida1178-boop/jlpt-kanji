@@ -3,7 +3,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import {
   ChevronLeft, ChevronRight, BookOpen, XCircle, AlertCircle,
   CheckCircle2, Clock, Plus, LayoutGrid, Upload, X, Loader2, Sparkles,
-  Trophy, Book, Star, PenTool, Download, Info
+  Trophy, Book, Star, PenTool, Download, Info, MoreVertical, Heart, HelpCircle
 } from 'lucide-react';
 import { romajiToHiragana } from './utils';
 import { StrokeOrderModal } from './StrokeOrderModal';
@@ -28,7 +28,7 @@ const SRSModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void })
       <div className="bg-white w-full max-w-2xl rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-12 shadow-2xl relative animate-in zoom-in duration-300 max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 hover:bg-slate-50 rounded-full transition-colors"
+          className="absolute top-6 right-6 p-3 hover:bg-slate-50 rounded-full transition-colors"
         >
           <X className="w-6 h-6 text-slate-400" />
         </button>
@@ -40,33 +40,16 @@ const SRSModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void })
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">What is SRS?</h2>
         </div>
 
-        <div className="space-y-8">
-          <section>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="bg-indigo-100 text-indigo-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">မြန်မာ</span>
-            </div>
-            <p className="text-slate-600 font-bold leading-relaxed text-sm md:text-base">
-              Spaced Repetition System (SRS) ဆိုသည်မှာ သင်ယူပြီးသား အချက်အလက်များကို မှတ်ဉာဏ်ထဲတွင် ရေရှည်စွဲမြဲနေစေရန်အတွက် ပြန်လည်လေ့ကျင့်ရမည့် အချိန်အပိုင်းအခြားကို စနစ်တကျ တိုးမြှင့်ပေးသည့် နည်းလမ်းဖြစ်သည်။ Kanji Saya တွင် သင်ကျွမ်းကျင်သော စာလုံးများကို နည်းနည်းချင်းသာ ပြသပေးပြီး၊ ခက်ขဲသော စာလုံးများကိုမူ ခဏခဏ ပြသပေးခြင်းဖြင့် အထိရောက်ဆုံး မှတ်သားနိုင်အောင် ကူညီပေးပါသည်။
-            </p>
-          </section>
-
-          <section>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="bg-amber-100 text-amber-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">English</span>
-            </div>
-            <p className="text-slate-600 font-medium leading-relaxed italic text-sm md:text-base">
-              Spaced Repetition System (SRS) is a learning technique that uses increasing intervals between subsequent reviews of previously learned material to exploit the psychological spacing effect. In Kanji Saya, cards you find easy will appear less frequently, while harder ones will appear more often to ensure they stick in your long-term memory.
-            </p>
-          </section>
-
-          <section>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="bg-emerald-100 text-emerald-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">日本語</span>
-            </div>
-            <p className="text-slate-600 font-medium leading-relaxed text-sm md:text-base">
-              間隔反復（SRS）は、以前に学習した内容を復習する際、その間隔を徐々に延ばしていく学習技法です。人間の記憶の仕組みを利用し、効率的に長期記憶へ定着させます。「Kanji Saya」では、覚えやすい漢字は表示回数を減らし、苦手な漢字は頻繁に表示することで、効率的な学習をサポートします。
-            </p>
-          </section>
+        <div className="space-y-6">
+          <p className="text-slate-600 font-bold leading-relaxed text-base md:text-lg">
+            Spaced Repetition System (SRS) ဆိုသည်မှာ လူသားတို့၏ မေ့လျော့တတ်သော သဘောသဘာဝ (Forgetting Curve) ကို အခြေခံပြီး အထိရောက်ဆုံး လေ့လာနိုင်ရန် ဖန်တီးထားသော စနစ်ဖြစ်သည်။
+          </p>
+          <p className="text-slate-500 font-medium leading-relaxed">
+            သင်ယူပြီးသား အချက်အလက်များကို မှတ်ဉာဏ်ထဲတွင် ရေရှည်စွဲမြဲနေစေရန်အတွက် ပြန်ลည်လေ့ကျင့်ရမည့် အချိန်အပိုင်းအခြားကို စနစ်တကျ တိုးမြှင့်ပေးသည့် နည်းလမ်းဖြစ်သည်။
+          </p>
+          <div className="bg-indigo-50 p-6 rounded-3xl border border-indigo-100 italic font-bold text-indigo-700">
+            "Kanji Saya တွင် သင်ကျွမ်းကျင်သော စာလုံးများကို နည်းနည်းချင်းသာ ပြသပေးပြီး၊ ခက်ခဲသော စာလုံးများကိုမူ ခဏခဏ ပြသပေးခြင်းဖြင့် အထိရောက်ဆုံး မှတ်သားနိုင်အောင် ကူညီပေးပါသည်။"
+          </div>
         </div>
 
         <button
@@ -77,6 +60,124 @@ const SRSModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void })
         </button>
       </div>
     </div>
+  );
+};
+
+const HowToModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-2xl rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-12 shadow-2xl relative animate-in zoom-in duration-300 max-h-[90vh] overflow-y-auto">
+        <button onClick={onClose} className="absolute top-6 right-6 p-3 hover:bg-slate-50 rounded-full transition-colors">
+          <X className="w-6 h-6 text-slate-400" />
+        </button>
+
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 shadow-inner">
+            <HelpCircle className="w-6 h-6" />
+          </div>
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">How to use?</h2>
+        </div>
+
+        <div className="space-y-10">
+          <section>
+            <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">၁။ လေ့လာမှုအဆင့်ဆင့်</h3>
+            <div className="grid grid-cols-1 gap-3">
+              {[
+                { icon: <Book className="w-4 h-4" />, text: "漢字 (စာလုံး) ကိုကြည့်ပါ။" },
+                { icon: <PenTool className="w-4 h-4" />, text: "ပုံကိုနှိပ်၍ အဓိပ္ပာယ်ကို လှန်ကြည့်ပါ။" },
+                { icon: <CheckCircle2 className="w-4 h-4" />, text: "မိမိမှတ်မိမှုအပေါ်မူတည်၍ ခလုတ်တစ်ခုကိုရွေးပါ။" }
+              ].map((s, i) => (
+                <div key={i} className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                  <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-indigo-500 font-black">{i + 1}</div>
+                  <span className="text-slate-700 font-bold text-sm md:text-base">{s.text}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">၂။ ခလုတ်များ၏ အဓိပ္ပာယ်</h3>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 bg-red-50 p-3 rounded-2xl border border-red-100">
+                <XCircle className="w-5 h-5 text-red-500" />
+                <span className="text-red-700 font-black text-sm">မရသေး : ခဏနေလျှင် ပြန်ပြပါမည်။</span>
+              </div>
+              <div className="flex items-center gap-3 bg-amber-50 p-3 rounded-2xl border border-amber-100">
+                <AlertCircle className="w-5 h-5 text-amber-500" />
+                <span className="text-amber-700 font-black text-sm">သိရုံပဲ : နောက် ၁ ရက် သို့မဟုတ် ၂ ရက်နေမှ ပြန်ပြပါမည်။</span>
+              </div>
+              <div className="flex items-center gap-3 bg-emerald-50 p-3 rounded-2xl border border-emerald-100">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                <span className="text-emerald-700 font-black text-sm">ကျွမ်းကျင် : နောက် ၄ ရက် သို့မဟုတ် ထိုထက်ပိုမှ ပြန်ပြပါမည်။</span>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">၃။ အခြားလုပ်ဆောင်ချက်များ</h3>
+            <p className="text-slate-600 font-bold leading-relaxed text-sm">
+              <span className="text-indigo-600">"ရေးနည်း" :</span> စုတ်ချက်အစီအစဉ်ကို ကြည့်ရန်။ <br />
+              <span className="text-indigo-600">"Install App" :</span> ဖုန်းတွင် အလွယ်တကူ ထည့်သွင်းအသုံးပြုရန်။
+            </p>
+          </section>
+        </div>
+
+        <button onClick={onClose} className="w-full mt-10 py-5 bg-indigo-600 text-white rounded-[1.8rem] font-black shadow-xl shadow-indigo-100 hover:bg-indigo-700 active:scale-95 transition-all uppercase tracking-widest text-xs">Close</button>
+      </div>
+    </div>
+  );
+};
+
+const ForYouModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-md rounded-[3rem] p-10 md:p-14 shadow-2xl relative animate-in zoom-in duration-300 text-center">
+        <div className="w-20 h-20 bg-red-50 rounded-[2rem] flex items-center justify-center text-red-500 mx-auto mb-8 shadow-inner animate-pulse">
+          <Heart className="w-10 h-10 fill-current" />
+        </div>
+        <h2 className="text-2xl font-black text-slate-900 mb-6">For You</h2>
+        <p className="text-slate-600 font-bold leading-loose text-lg mb-10">
+          Kanji Saya အက်ပ်ကို အသုံးပြုပေးသည့်အတွက် ကျေးဇူးတင်ပါသည်။ <br /><br />
+          သင်တို့အားလုံး ဂျပန်စာလေ့လာရာတွင် အဆင်ပြေချောမွေ့ပြီး ထူးချွန်ထက်မြက်သော ဂျပန်စာပညာရှင်များ ဖြစ်ကြပါစေကြောင်း ဆုမွန်ကောင်းတောင်းအပ်ပါသည်။
+        </p>
+        <button onClick={onClose} className="w-full py-5 bg-indigo-600 text-white rounded-[1.8rem] font-black shadow-xl shadow-indigo-100 hover:bg-indigo-700 active:scale-95 transition-all uppercase tracking-widest text-xs">
+          ကျေးဇူးတင်ပါတယ်
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const AppMenu = ({ isOpen, onClose, onSelect }: { isOpen: boolean; onClose: () => void; onSelect: (id: string) => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <>
+      <div className="fixed inset-0 z-40" onClick={onClose}></div>
+      <div className="absolute right-4 top-16 z-50 w-64 bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-3 animate-in fade-in slide-in-from-top-4 duration-200">
+        {[
+          { id: 'how', label: 'How to use?', sub: '(အသုံးပြုနည်း)', icon: <HelpCircle className="w-4 h-4" /> },
+          { id: 'srs', label: 'What is SRS?', sub: '(လေ့လာမှုစနစ်)', icon: <Info className="w-4 h-4" /> },
+          { id: 'foryou', label: 'For You', sub: '(သင်တို့အတွက်)', icon: <Heart className="w-4 h-4 text-red-400" /> }
+        ].map((item, i) => (
+          <button
+            key={item.id}
+            onClick={() => { onSelect(item.id); onClose(); }}
+            className={`w-full flex items-center gap-4 p-4 rounded-2xl hover:bg-indigo-50 transition-all text-left group ${i !== 2 ? 'mb-1' : ''}`}
+          >
+            <div className="text-slate-400 group-hover:text-indigo-600 transition-colors">{item.icon}</div>
+            <div className="flex flex-col">
+              <span className="text-sm font-black text-slate-800 tracking-tight group-hover:text-indigo-600">{item.label}</span>
+              <span className="text-[10px] font-bold text-slate-400 tracking-tight">{item.sub}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </>
   );
 };
 
@@ -93,6 +194,9 @@ export default function App() {
   const [uploadText, setUploadText] = useState("");
   const [isStrokeOrderOpen, setIsStrokeOrderOpen] = useState(false);
   const [isSRSModalOpen, setIsSRSModalOpen] = useState(false);
+  const [isHowToModalOpen, setIsHowToModalOpen] = useState(false);
+  const [isForYouModalOpen, setIsForYouModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showInstallBtn, setShowInstallBtn] = useState(false);
 
@@ -212,23 +316,6 @@ export default function App() {
     }
   }, [dueCards.length, currentIndex]);
 
-  const handleUploadDeck = () => {
-    if (!uploadText) return;
-    try {
-      const newDeck = JSON.parse(uploadText);
-      if (!newDeck.id || !newDeck.cards) throw new Error("Invalid format");
-
-      const existingCustomDecks = decks.filter(d => !DEFAULT_DECKS.some(def => def.id === d.id));
-      const updatedUserDecks = [...existingCustomDecks.filter(d => d.id !== newDeck.id), newDeck];
-
-      localStorage.setItem('kanji-saya-custom-decks', JSON.stringify(updatedUserDecks));
-      setDecks([...DEFAULT_DECKS, ...updatedUserDecks]);
-      setIsUploadModalOpen(false);
-      setUploadText("");
-    } catch (e) {
-      alert("Format Error: JSON format (id, title, cards[]) is required.");
-    }
-  };
 
   if (loading) return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center gap-4">
@@ -253,30 +340,32 @@ export default function App() {
                 <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
                   Kanji Saya
                 </h1>
-                <button
-                  onClick={() => setIsSRSModalOpen(true)}
-                  className="mt-1 flex items-center gap-1.5 text-indigo-500 hover:text-indigo-700 transition-colors"
-                >
-                  <Info className="w-3.5 h-3.5" />
-                  <span className="text-[10px] font-black uppercase tracking-widest border-b border-indigo-200">What is SRS?</span>
-                </button>
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2 relative">
               {showInstallBtn && (
                 <button
                   onClick={handleInstallClick}
-                  className="bg-indigo-600 text-white px-5 py-3 rounded-2xl shadow-lg hover:bg-indigo-700 active:scale-95 transition-all flex items-center gap-2 text-xs font-black uppercase tracking-widest"
+                  className="bg-indigo-600 text-white px-5 py-3 rounded-2xl shadow-lg hover:bg-indigo-700 active:scale-95 transition-all flex items-center gap-2 text-xs font-black uppercase tracking-widest h-12"
                 >
-                  <Download className="w-4 h-4" /> Install App
+                  <Download className="w-4 h-4" /> Install
                 </button>
               )}
               <button
-                onClick={() => setIsUploadModalOpen(true)}
-                className="bg-white border-2 border-indigo-50 text-indigo-600 p-4 rounded-[1.5rem] shadow-lg hover:shadow-indigo-100 hover:border-indigo-400 active:scale-95 transition-all"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="bg-white border-2 border-slate-100 text-slate-500 w-12 h-12 rounded-2xl shadow-sm hover:border-indigo-400 hover:text-indigo-600 active:scale-95 transition-all flex items-center justify-center"
               >
-                <Plus className="w-6 h-6" />
+                <MoreVertical className="w-6 h-6" />
               </button>
+              <AppMenu
+                isOpen={isMenuOpen}
+                onClose={() => setIsMenuOpen(false)}
+                onSelect={(id) => {
+                  if (id === 'srs') setIsSRSModalOpen(true);
+                  if (id === 'how') setIsHowToModalOpen(true);
+                  if (id === 'foryou') setIsForYouModalOpen(true);
+                }}
+              />
             </div>
           </header>
 
@@ -320,39 +409,23 @@ export default function App() {
             })}
           </div>
           <div className="mt-8 mb-4 text-center text-[9px] font-black text-slate-300 uppercase tracking-widest italic">
-            v1.2.1 • Sync: Local
+            v1.3.0 • Sync: Local
           </div>
-        </div>
+        </div >
 
-        {isUploadModalOpen && (
-          <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-6">
-            <div className="bg-white w-full max-w-md rounded-[3rem] p-8 shadow-2xl animate-in zoom-in duration-300">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-black text-slate-800 flex items-center gap-2"><Upload className="w-5 h-5" /> Import Deck</h2>
-                <button onClick={() => setIsUploadModalOpen(false)} className="p-2 hover:bg-slate-50 rounded-full transition-colors"><X className="w-6 h-6 text-slate-400" /></button>
-              </div>
-              {/* FIXED: Wrapped the literal curly braces in a string literal to prevent them from being parsed as a JSX expression. */}
-              <p className="text-[11px] text-slate-400 mb-4 font-bold uppercase tracking-widest leading-relaxed">JSON format အတိုင်း ထည့်သွင်းပါ။ (id, title, cards: {'{ kanji, meaning, examples }'}[] )</p>
-              <textarea
-                className="w-full h-48 bg-slate-50 border border-slate-200 rounded-3xl p-5 text-[11px] font-mono outline-none focus:border-indigo-400 transition-all mb-6 focus:ring-4 focus:ring-indigo-100"
-                placeholder='{ "id": "my-deck", "title": "My Kanji", "cards": [...] }'
-                value={uploadText}
-                onChange={(e) => setUploadText(e.target.value)}
-              />
-              <button
-                onClick={handleUploadDeck}
-                className="w-full py-5 bg-indigo-600 text-white rounded-[1.5rem] font-black shadow-xl shadow-indigo-100 hover:bg-indigo-700 active:scale-95 transition-all uppercase tracking-widest text-xs"
-              >
-                Upload & Sync
-              </button>
-            </div>
-          </div>
-        )}
         <SRSModal
           isOpen={isSRSModalOpen}
           onClose={() => setIsSRSModalOpen(false)}
         />
-      </div>
+        <HowToModal
+          isOpen={isHowToModalOpen}
+          onClose={() => setIsHowToModalOpen(false)}
+        />
+        <ForYouModal
+          isOpen={isForYouModalOpen}
+          onClose={() => setIsForYouModalOpen(false)}
+        />
+      </div >
     );
   }
 
