@@ -42,16 +42,76 @@ export const N4_KANJI_DATA = [
   { id: 37, kanji: "習", meaning: "သင်ယူသည် (Learn)", onyomi: "シュウ", kunyomi: "なら.う", examples: [{ word: "予習", reading: "yoshuu", mean: "ကြိုတင်လေ့ကျင့်ခြင်း" }] },
   { id: 38, kanji: "英", meaning: "အင်္ဂလိပ် (English)", onyomi: "エイ", kunyomi: "-", examples: [{ word: "英語", reading: "eigo", mean: "အင်္ဂလိပ်စာ" }] },
   { id: 39, kanji: "国", meaning: "နိုင်ငံ (Country)", onyomi: "コク", kunyomi: "くに", examples: [{ word: "韓国", reading: "kankoku", mean: "ကိုးရီးယား" }] },
-  { id: 40, kanji: "地", meaning: "မြေပြင် (Earth)", onyomi: "チ/ジ", kunyomi: "-", examples: [{ word: "地下鉄", reading: "chikatetsu", mean: "မြေအောက်ရထား" }] }
+  { id: 40, kanji: "地", meaning: "မြေပြင် (Earth)", onyomi: "チ/ジ", kunyomi: "-", examples: [{ word: "地下鉄", reading: "chikatetsu", mean: "မြေအောက်ရထား" }] },
+  { id: 41, kanji: "図", meaning: "ပုံ (Map/Drawing)", onyomi: "ズ/ト", kunyomi: "はか.る", examples: [{ word: "図書館", reading: "toshokan", mean: "စာကြည့်တိုက်" }] },
+  { id: 42, kanji: "館", meaning: "အဆောက်အဦး (Building/Hall)", onyomi: "カン", kunyomi: "やか", examples: [{ word: "映画館", reading: "eigakan", mean: "ရုပ်ရှင်ရုံ" }] },
+  { id: 43, kanji: "茶", meaning: "လက်ဖက်ရည် (Tea)", onyomi: "チャ/サ", kunyomi: "-", examples: [{ word: "お茶", reading: "ocha", mean: "လက်ဖက်ရည်" }, { word: "茶道", reading: "sadou", mean: "လက်ဖက်ရည်ဖျော်နည်း" }] },
+  { id: 44, kanji: "酒", meaning: "အရက် (Sake/Alcohol)", onyomi: "シュ", kunyomi: "さけ/さか", examples: [{ word: "日本酒", reading: "nihonshu", mean: "ဂျပန်အရက်" }] },
+  { id: 45, kanji: "写", meaning: "ကူးယူသည် (Copy/Photograph)", onyomi: "シャ", kunyomi: "うつ.す", examples: [{ word: "写真", reading: "shashin", mean: "ဓာတ်ပုံ" }] },
+  { id: 46, kanji: "真", meaning: "အမှန် (Truth/Pure)", onyomi: "シン", kunyomi: "ま", examples: [{ word: "写真", reading: "shashin", mean: "ဓာတ်ပုံ" }, { word: "真ん中", reading: "mannaka", mean: "အလယ်ဗဟို" }] },
+  { id: 47, kanji: "紙", meaning: "စက္ကူ (Paper)", onyomi: "シ", kunyomi: "かみ", examples: [{ word: "手紙", reading: "tegami", mean: "စာ" }] },
+  { id: 48, kanji: "映", meaning: "ရောင်ပြန်ဟပ်သည် (Reflect/Project)", onyomi: "エイ", kunyomi: "うつ.る", examples: [{ word: "映画", reading: "eiga", mean: "ရုပ်ရှင်" }] },
+  { id: 49, kanji: "画", meaning: "ရုပ်ပုံ (Movie/Picture)", onyomi: "ガ/カク", kunyomi: "-", examples: [{ word: "映画", reading: "eiga", mean: "ရုပ်ရှင်" }, { word: "計画", reading: "keikaku", mean: "အစီအစဉ်" }] },
+  { id: 50, kanji: "店", meaning: "ဆိုင် (Shop)", onyomi: "テン", kunyomi: "みせ", examples: [{ word: "喫茶店", reading: "kissaten", mean: "ကော်ဖီဆိုင်" }, { word: "店員", reading: "tenin", mean: "ဆိုင်ဝန်ထမ်း" }] },
+  { id: 51, kanji: "屋", meaning: "ဆိုင်/အိမ် (Store/House)", onyomi: "オク", kunyomi: "や", examples: [{ word: "本屋", reading: "hon-ya", mean: "စာအုပ်ဆိုင်" }, { word: "屋上", reading: "okujou", mean: "အမိုးထပ်" }] },
+  { id: 52, kanji: "用", meaning: "အသုံးပြုသည် (Use/Business)", onyomi: "ヨウ", kunyomi: "もち.いる", examples: [{ word: "用事", reading: "youji", mean: "ကိစ္စ" }] },
+  { id: 53, kanji: "送", meaning: "ပို့သည် (Send)", onyomi: "ソウ", kunyomi: "おく.る", examples: [{ word: "送信", reading: "soushin", mean: "ပေးပို့ခြင်း" }] },
+  { id: 54, kanji: "転", meaning: "လှည့်သည် (Turn/Roll)", onyomi: "テン", kunyomi: "ころ.がる", examples: [{ word: "自転車", reading: "jitensha", mean: "စက်ဘီး" }, { word: "運転", reading: "unten", mean: "မောင်းနှင်ခြင်း" }] },
+  { id: 55, kanji: "借", meaning: "ငှားသည် (Borrow)", onyomi: "シャク", kunyomi: "か.りる", examples: [{ word: "借金", reading: "shakkin", mean: "အကြွေး" }] },
+  { id: 56, kanji: "貸", meaning: "ငှားရမ်းသည် (Lend)", onyomi: "タイ", kunyomi: "か.す", examples: [{ word: "貸出", reading: "kashidashi", mean: "ငှားရမ်းထုတ်ပေးခြင်း" }] },
+  { id: 57, kanji: "終", meaning: "ပြီးဆုံးသည် (End)", onyomi: "シュウ", kunyomi: "お.わる", examples: [{ word: "終電", reading: "shuuden", mean: "နောက်ဆုံးရထား" }] },
+  { id: 58, kanji: "始", meaning: "စတင်သည် (Begin)", onyomi: "シ", kunyomi: "はじ.める", examples: [{ word: "開始", reading: "kaishi", mean: "စတင်ခြင်း" }] },
+  { id: 59, kanji: "昼", meaning: "နေ့လည် (Daytime/Noon)", onyomi: "チュウ", kunyomi: "ひる", examples: [{ word: "昼休み", reading: "hiruyasumi", mean: "နေ့လည်နားချိန်" }] },
+  { id: 60, kanji: "夜", meaning: "ည (Night)", onyomi: "ヤ", kunyomi: "よる/よ", examples: [{ word: "今夜", reading: "konya", mean: "ယနေ့ည" }, { word: "夜中", reading: "yonaka", mean: "သန်းခေါင်" }] },
+  { id: 61, kanji: "朝", meaning: "မနက် (Morning)", onyomi: "チョウ", kunyomi: "あさ", examples: [{ word: "朝食", reading: "choushoku", mean: "မနက်စာ" }] },
+  { id: 62, kanji: "夕", meaning: "ညနေ (Evening)", onyomi: "セキ", kunyomi: "ゆう", examples: [{ word: "夕方", reading: "yuugata", mean: "ညနေခင်း" }] },
+  { id: 63, kanji: "方", meaning: "ဘက်/လူ (Direction/Person)", onyomi: "ホウ", kunyomi: "かた", examples: [{ word: "方法", reading: "houhou", mean: "နည်းလမ်း" }, { word: "読み方", reading: "yomikata", mean: "ဖတ်နည်း" }] },
+  { id: 64, kanji: "万", meaning: "တစ်သောင်း (Ten Thousand)", onyomi: "マン/バン", kunyomi: "-", examples: [{ word: "一万円", reading: "ichiman-en", mean: "တစ်သောင်းယန်း" }] },
+  { id: 65, kanji: "円", meaning: "ယန်း/အဝိုင်း (Yen/Circle)", onyomi: "エン", kunyomi: "まる", examples: [{ word: "円い", reading: "marui", mean: "ဝိုင်းသော" }] },
+  { id: 66, kanji: "百", meaning: "တစ်ရာ (Hundred)", onyomi: "ヒャク", kunyomi: "-", examples: [{ word: "三百", reading: "sanbyaku", mean: "သုံးရာ" }] },
+  { id: 67, kanji: "千", meaning: "တစ်ထောင် (Thousand)", onyomi: "セン", kunyomi: "ち", examples: [{ word: "二千", reading: "nisen", mean: "နှစ်ထောင်" }] },
+  { id: 68, kanji: "多", meaning: "များသော (Many)", onyomi: "タ", kunyomi: "おお.い", examples: [{ word: "多分", reading: "tabun", mean: "ဖြစ်နိုင်သည်" }] },
+  { id: 69, kanji: "少", meaning: "နည်းသော (Few)", onyomi: "ショウ", kunyomi: "すく.ない/すこ.し", examples: [{ word: "少量", reading: "shouryou", mean: "ပမာဏအနည်းငယ်" }] },
+  { id: 70, kanji: "古", meaning: "ဟောင်းသော (Old)", onyomi: "コ", kunyomi: "ふる.い", examples: [{ word: "中古", reading: "chuuko", mean: "တစ်ပတ်ရစ်" }] },
+  { id: 71, kanji: "新", meaning: "သစ်သော (New)", onyomi: "シン", kunyomi: "あたら.しい", examples: [{ word: "新聞", reading: "shinbun", mean: "သတင်းစာ" }] },
+  { id: 72, kanji: "安", meaning: "ဈေးပေါသော (Cheap/Quiet)", onyomi: "アン", kunyomi: "やす.い", examples: [{ word: "安心", reading: "anshin", mean: "စိတ်အေးရခြင်း" }] },
+  { id: 73, kanji: "高", meaning: "မြင့်သော/ဈေးကြီးသော (High/Expensive)", onyomi: "コウ", kunyomi: "たか.い", examples: [{ word: "高校", reading: "koukou", mean: "အထက်တန်းကျောင်း" }] },
+  { id: 74, kanji: "長", meaning: "ရှည်သော (Long)", onyomi: "チョウ", kunyomi: "なが.い", examples: [{ word: "社長", reading: "shachou", mean: "ကုမ္ပဏီဥက္ကဋ္ဌ" }] },
+  { id: 75, kanji: "短", meaning: "တိုသော (Short)", onyomi: "タン", kunyomi: "みじか.い", examples: [{ word: "短時間", reading: "tanjikan", mean: "အချိန်တိုအတွင်း" }] },
+  { id: 76, kanji: "明", meaning: "လင်းသော (Bright)", onyomi: "メイ/ミョウ", kunyomi: "あか.るい", examples: [{ word: "明日", reading: "ashita", mean: "မနက်ဖြန်" }] },
+  { id: 77, kanji: "暗", meaning: "မှောင်သော (Dark)", onyomi: "アン", kunyomi: "くら.い", examples: [{ word: "暗号", reading: "angou", mean: "လျှို့ဝှက်ကုဒ်" }] },
+  { id: 78, kanji: "広", meaning: "ကျယ်သော (Wide)", onyomi: "コウ", kunyomi: "ひろ.い", examples: [{ word: "広告", reading: "koukoku", mean: "ကြော်ငြာ" }] },
+  { id: 79, kanji: "速", meaning: "မြန်သော (Fast)", onyomi: "ソク", kunyomi: "はや.い", examples: [{ word: "速度", reading: "sokudo", mean: "အမြန်နှုန်း" }] },
+  { id: 80, kanji: "遅", meaning: "နှေးသော (Slow)", onyomi: "チ", kunyomi: "おそ.い", examples: [{ word: "遅刻", reading: "chikoku", mean: "နောက်ကျခြင်း" }] },
+  { id: 81, kanji: "重", meaning: "လေးသော (Heavy)", onyomi: "ジュウ/チョウ", kunyomi: "おも.い", examples: [{ word: "重要", reading: "juuyou", mean: "အရေးကြီးသော" }] },
+  { id: 82, kanji: "軽", meaning: "ပေါ့သော (Light)", onyomi: "ケイ", kunyomi: "かる.い", examples: [{ word: "軽食", reading: "keishoku", mean: "အပေါ့စားစားသောက်ဖွယ်" }] },
+  { id: 83, kanji: "遠", meaning: "ဝေးသော (Far)", onyomi: "エン", kunyomi: "とお.い", examples: [{ word: "遠慮", reading: "enryo", mean: "အားနာခြင်း" }] },
+  { id: 84, kanji: "近", meaning: "နီးသော (Near)", onyomi: "キン", kunyomi: "ちか.い", examples: [{ word: "最近", reading: "saikin", mean: "လတ်တလော" }] },
+  { id: 85, kanji: "正", meaning: "မှန်ကန်သော (Correct)", onyomi: "セイ/ショウ", kunyomi: "ただ.しい", examples: [{ word: "正解", reading: "seikai", mean: "အဖြေမှန်" }] },
+  { id: 86, kanji: "不", meaning: "မ... (Non/Un-)", onyomi: "フ/ブ", kunyomi: "-", examples: [{ word: "不便", reading: "fuben", mean: "အဆင်မပြေသော" }] },
+  { id: 87, kanji: "同", meaning: "တူညီသော (Same)", onyomi: "ドウ", kunyomi: "おな.じ", examples: [{ word: "同時", reading: "douji", mean: "တစ်ချိန်တည်းမှာ" }] },
+  { id: 88, kanji: "計", meaning: "တိုင်းတာသည် (Measure/Plan)", onyomi: "ケイ", kunyomi: "はか.る", examples: [{ word: "時計", reading: "tokei", mean: "နာရီ" }] },
+  { id: 89, kanji: "集", meaning: "စုစည်းသည် (Gather)", onyomi: "シュウ", kunyomi: "あつ.まる", examples: [{ word: "集合", reading: "shuugou", mean: "စုဝေးခြင်း" }] },
+  { id: 90, kanji: "便", meaning: "အဆင်ပြေရခြင်း (Convenience/Flight)", onyomi: "ベン/ビン", kunyomi: "たより", examples: [{ word: "郵便局", reading: "yuubinkyoku", mean: "စာတိုက်" }] },
+  { id: 91, kanji: "利", meaning: "အကျိုးအမြတ် (Profit/Advantage)", onyomi: "リ", kunyomi: "き.く", examples: [{ word: "利用", reading: "riyou", mean: "အသုံးပြုခြင်း" }] },
+  { id: 92, kanji: "特", meaning: "ထူးခြားသော (Special)", onyomi: "トク", kunyomi: "-", examples: [{ word: "特別に", reading: "tokubetsu ni", mean: "အထူးသဖြင့်" }] },
+  { id: 93, kanji: "別", meaning: "သီးခြား (Separate/Different)", onyomi: "ベツ", kunyomi: "わか.れる", examples: [{ word: "別に", reading: "betsu ni", mean: "ဘာမှမဟုတ်ပါ/သီးခြား" }] },
+  { id: 94, kanji: "有", meaning: "ရှိသည် (Exist/Have)", onyomi: "ユウ/ウ", kunyomi: "あ.る", examples: [{ word: "有名", reading: "yuumei", mean: "နာမည်ကြီးသော" }] },
+  { id: 95, kanji: "無", meaning: "မရှိ (Nothing/Nil)", onyomi: "ム/ブ", kunyomi: "な.い", examples: [{ word: "無理", reading: "muri", mean: "မဖြစ်နိုင်သော" }] },
+  { id: 96, kanji: "働", meaning: "အလုပ်လုပ်သည် (Work)", onyomi: "ドウ", kunyomi: "はたら.く", examples: [{ word: "労働", reading: "roudou", mean: "အလုပ်သမား" }] },
+  { id: 97, kanji: "運", meaning: "ကံ/သယ်ဆောင်သည် (Fortune/Carry)", onyomi: "ウン", kunyomi: "はこ.ぶ", examples: [{ word: "運動", reading: "undou", mean: "လေ့ကျင့်ခန်း" }] },
+  { id: 98, kanji: "動", meaning: "လှုပ်ရှားသည် (Move)", onyomi: "ドウ", kunyomi: "うご.く", examples: [{ word: "自動車", reading: "jidousha", mean: "ကား" }] },
+  { id: 99, kanji: "止", meaning: "ရပ်သည် (Stop)", onyomi: "シ", kunyomi: "と.まる", examples: [{ word: "中止", reading: "chuushi", mean: "ဖျက်သိမ်းခြင်း" }] },
+  { id: 100, kanji: "歩", meaning: "လမ်းလျှောက်သည် (Walk)", onyomi: "ホ", kunyomi: "ある.く", examples: [{ word: "散歩", reading: "sanpo", mean: "လမ်းလျှောက်ထွက်ခြင်း" }] }
 ];
 
 // Helper to chunk the data into separate decks
-const chunkArray = (arr: any[], size: number) => 
+const chunkArray = (arr: any[], size: number) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
     arr.slice(i * size, i * size + size)
   );
 
-const chunks = chunkArray(N4_KANJI_DATA, 20);
+const chunks = chunkArray(N4_KANJI_DATA, 50);
 
 export const DEFAULT_DECKS: Deck[] = chunks.map((cards, index) => ({
   id: `n4-core-v2-p${index + 1}`,
