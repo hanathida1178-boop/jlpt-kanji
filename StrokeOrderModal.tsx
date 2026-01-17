@@ -211,7 +211,7 @@ export const StrokeOrderModal: React.FC<StrokeOrderModalProps> = ({ kanji, isOpe
                                     <button
                                         key={s.val}
                                         onClick={() => setSpeed(s.val)}
-                                        className={`flex-1 py-2 rounded-xl text-sm transition-all ${speed === s.val ? 'bg-white shadow-sm text-indigo-600 scale-100' : 'text-slate-400 hover:text-slate-600 scale-95'}`}
+                                        className={`flex-1 py-3 rounded-xl text-2xl transition-all ${speed === s.val ? 'bg-white shadow-sm text-indigo-600 scale-105' : 'text-slate-400 hover:text-slate-600 scale-95'}`}
                                     >
                                         {s.label}
                                     </button>
