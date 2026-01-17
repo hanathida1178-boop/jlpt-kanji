@@ -3,9 +3,10 @@ import React, { useState, useMemo, useEffect } from 'react';
 import {
   ChevronLeft, ChevronRight, BookOpen, XCircle, AlertCircle,
   CheckCircle2, Clock, Plus, LayoutGrid, Upload, X, Loader2, Sparkles,
-  Trophy, Book, Star
+  Trophy, Book, Star, PenTool
 } from 'lucide-react';
 import { romajiToHiragana } from './utils';
+import { StrokeOrderModal } from './StrokeOrderModal';
 import {
   onAuthStateChanged,
   signInAnonymously,
@@ -36,9 +37,10 @@ export default function App() {
   const [userProgress, setUserProgress] = useState<UserProgress>({});
   const [isFlipped, setIsFlipped] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [feedback, setFeedback] = useState<{ msg: string; color: string } | null>(null);
+  const [feedback, setFeedback] = useState<FeedbackType | null>(null);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [uploadText, setUploadText] = useState("");
+  const [isStrokeOrderOpen, setIsStrokeOrderOpen] = useState(false);
 
   // Auth Initialization
   useEffect(() => {
@@ -328,9 +330,17 @@ export default function App() {
 
                 {/* BACK FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-6 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
-                  <div className="flex justify-between items-end mb-3 md:mb-8 border-b-2 border-slate-100 pb-3 md:pb-6">
-                    <span className="text-5xl md:text-7xl font-bold text-indigo-900 leading-none">{currentCard.kanji}</span>
-                    <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full shadow-sm">{activeDeck?.title}</span>
+                  <div className="flex justify-between items-start mb-3 md:mb-8 border-b-2 border-slate-100 pb-3 md:pb-6">
+                    <div className="flex flex-col">
+                      <span className="text-5xl md:text-7xl font-bold text-indigo-900 leading-none">{currentCard.kanji}</span>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setIsStrokeOrderOpen(true); }}
+                        className="mt-2 flex items-center gap-2 text-[10px] font-black text-indigo-500 uppercase tracking-widest hover:text-indigo-700 transition-colors"
+                      >
+                        <PenTool className="w-3 h-3" /> 書き順
+                      </button>
+                    </div>
+                    <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full shadow-sm self-start">{activeDeck?.title}</span>
                   </div>
 
                   <div className="space-y-4 md:space-y-10">
@@ -453,6 +463,11 @@ export default function App() {
           </div>
         )}
       </div>
+      <StrokeOrderModal
+        kanji={currentCard?.kanji || ""}
+        isOpen={isStrokeOrderOpen}
+        onClose={() => setIsStrokeOrderOpen(false)}
+      />
     </div>
   );
 }
