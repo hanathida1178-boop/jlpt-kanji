@@ -329,7 +329,7 @@ export default function App() {
                 {/* BACK FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-6 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
                   <div className="flex justify-between items-end mb-3 md:mb-8 border-b-2 border-slate-100 pb-3 md:pb-6">
-                    <span className="text-4xl md:text-7xl font-bold text-indigo-900 leading-none">{currentCard.kanji}</span>
+                    <span className="text-5xl md:text-7xl font-bold text-indigo-900 leading-none">{currentCard.kanji}</span>
                     <span className="text-[8px] font-black text-slate-300 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full shadow-sm">{activeDeck?.title}</span>
                   </div>
 
