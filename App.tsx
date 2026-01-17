@@ -286,7 +286,7 @@ export default function App() {
           </button>
           <div className="flex items-center gap-3">
             <div className="bg-indigo-600 text-white px-5 py-2 rounded-full text-[10px] font-black shadow-lg shadow-indigo-100 uppercase tracking-widest italic flex items-center gap-2">
-              <Clock className="w-3 h-3" /> Due: {dueCards.length}
+              <Clock className="w-3 h-3" /> လေ့လာရန်: {dueCards.length}
             </div>
           </div>
         </div>
