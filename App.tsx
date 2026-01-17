@@ -214,6 +214,9 @@ export default function App() {
               );
             })}
           </div>
+          <div className="mt-8 mb-4 text-center text-[9px] font-black text-slate-300 uppercase tracking-widest italic">
+            v1.0.2 • Sync: Local
+          </div>
         </div>
 
         {isUploadModalOpen && (
@@ -246,10 +249,10 @@ export default function App() {
 
   // STUDY VIEW
   return (
-    <div className="h-screen bg-slate-50 flex flex-col items-center p-3 md:p-8 overflow-hidden">
+    <div className="h-screen bg-slate-50 flex flex-col items-center p-2 md:p-8 overflow-hidden">
       <div className="max-w-xl w-full flex flex-col h-full">
         {/* Navigation Header */}
-        <div className="flex justify-between items-center mb-0 md:mb-8">
+        <div className="flex justify-between items-center mb-1 md:mb-8">
           <button
             onClick={() => setView('home')}
             className="flex items-center gap-2 text-slate-400 font-black text-[10px] tracking-widest hover:text-indigo-600 transition-all uppercase"
