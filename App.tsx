@@ -312,6 +312,11 @@ export default function App() {
               >
                 {/* FRONT FACE */}
                 <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col items-center justify-center p-6 md:p-8 border-[8px] md:border-[12px] border-slate-100 shadow-inner group">
+                  {/* Card number in top right */}
+                  <div className="absolute top-4 right-4 md:top-6 md:right-6 text-slate-300 text-xs md:text-sm font-bold">
+                    {currentIndex + 1}/{dueCards.length}
+                  </div>
+
                   <div className="text-[110px] md:text-[180px] leading-none font-bold text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
                     {currentCard.kanji}
                   </div>
