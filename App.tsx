@@ -387,7 +387,11 @@ export default function App() {
               {/* Bottom Bar Controls */}
               <div className="flex items-center justify-between px-2">
                 <button
-                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => (prev - 1 + dueCards.length) % dueCards.length); }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsFlipped(false);
+                    setCurrentIndex(prev => (prev - 1 + dueCards.length) % dueCards.length);
+                  }}
                   disabled={dueCards.length <= 1}
                   className="p-4 md:p-6 bg-white rounded-full shadow-xl text-slate-300 active:bg-indigo-50 active:scale-90 transition-all border-2 border-slate-50 disabled:opacity-30"
                 >
@@ -406,7 +410,11 @@ export default function App() {
                 </div>
 
                 <button
-                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => (prev + 1) % dueCards.length); }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsFlipped(false);
+                    setCurrentIndex(prev => (prev + 1) % dueCards.length);
+                  }}
                   disabled={dueCards.length <= 1}
                   className="p-4 md:p-6 bg-indigo-600 rounded-full shadow-2xl text-white active:scale-90 transition-all shadow-indigo-300 hover:bg-indigo-700 disabled:bg-slate-300"
                 >
