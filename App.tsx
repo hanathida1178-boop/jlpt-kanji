@@ -333,10 +333,7 @@ export default function App() {
             <div className="flex items-center gap-4">
               <img src="/app-icon.png" alt="Kanji Saya Icon" className="w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-lg border-2 border-white object-cover" />
               <div>
-                <div className="flex items-center gap-2 mb-1 md:mb-2">
-                  <Sparkles className="w-5 h-5 text-indigo-500" />
-                  <span className="text-xs font-black text-indigo-500 uppercase tracking-widest">N4 Mastering</span>
-                </div>
+
                 <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
                   Kanji Saya
                 </h1>
@@ -409,7 +406,7 @@ export default function App() {
             })}
           </div>
           <div className="mt-8 mb-4 text-center text-[9px] font-black text-slate-300 uppercase tracking-widest italic">
-            v1.3.0 • Sync: Local
+            v1.3.1 • Sync: Local
           </div>
         </div >
 
@@ -534,7 +531,7 @@ export default function App() {
             </div>
 
             {/* Bottom Controls Group */}
-            <div className="flex flex-col gap-2 md:gap-4 pb-2 md:pb-4">
+            <div className="flex flex-col gap-1.5 md:gap-4 pb-1 md:pb-4">
               {/* Controls Area */}
               <div className="h-20 md:h-32">
                 {isFlipped ? (
@@ -575,7 +572,7 @@ export default function App() {
                     setCurrentIndex(prev => (prev - 1 + dueCards.length) % dueCards.length);
                   }}
                   disabled={dueCards.length <= 1}
-                  className="p-4 md:p-6 bg-white rounded-full shadow-xl text-slate-300 active:bg-indigo-50 active:scale-90 transition-all border-2 border-slate-50 disabled:opacity-30"
+                  className="p-3.5 md:p-6 bg-white rounded-full shadow-xl text-slate-300 active:bg-indigo-50 active:scale-90 transition-all border-2 border-slate-50 disabled:opacity-30"
                 >
                   <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
                 </button>
@@ -598,7 +595,7 @@ export default function App() {
                     setCurrentIndex(prev => (prev + 1) % dueCards.length);
                   }}
                   disabled={dueCards.length <= 1}
-                  className="p-4 md:p-6 bg-indigo-600 rounded-full shadow-2xl text-white active:scale-90 transition-all shadow-indigo-300 hover:bg-indigo-700 disabled:bg-slate-300"
+                  className="p-3.5 md:p-6 bg-indigo-600 rounded-full shadow-2xl text-white active:scale-90 transition-all shadow-indigo-300 hover:bg-indigo-700 disabled:bg-slate-300"
                 >
                   <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
                 </button>
