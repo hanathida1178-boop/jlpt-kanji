@@ -249,7 +249,7 @@ export default function App() {
 
   // STUDY VIEW
   return (
-    <div className="h-screen bg-slate-50 flex flex-col items-center p-2 md:p-8 overflow-hidden">
+    <div className="h-screen bg-slate-50 flex flex-col items-center p-2 md:p-8 overflow-hidden safe-area-inset">
       <div className="max-w-xl w-full flex flex-col h-full">
         {/* Navigation Header */}
         <div className="flex justify-between items-center mb-1 md:mb-8">
@@ -267,10 +267,10 @@ export default function App() {
         </div>
 
         {/* Feedback Area */}
-        <div className="h-4 md:h-12 mb-0 md:mb-4 flex justify-center">
+        <div className="h-0 md:h-12 mb-1 md:mb-4 flex justify-center">
           <div className={`transition-all duration-300 ${feedback ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-4 opacity-0 scale-95'}`}>
             {feedback && (
-              <div className={`${feedback.color} bg-white shadow-xl border-2 px-6 py-2 rounded-full flex items-center gap-2 text-[10px] md:text-[11px] font-black italic`}>
+              <div className={`${feedback.color} bg-white shadow-xl border-2 px-6 py-1 rounded-full flex items-center gap-2 text-[9px] md:text-[11px] font-black italic mt-1`}>
                 {feedback.msg}
               </div>
             )}
@@ -292,7 +292,7 @@ export default function App() {
                     {currentIndex + 1}/{dueCards.length}
                   </div>
 
-                  <div className="text-[110px] md:text-[180px] leading-none font-bold text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500">
+                  <div className="text-[110px] md:text-[180px] leading-none font-black text-indigo-950 tracking-tighter drop-shadow-sm group-hover:scale-110 transition-transform duration-500 kanji-heavy">
                     {currentCard.kanji}
                   </div>
                   <div className="mt-8 md:mt-16 flex flex-col items-center gap-3">
@@ -301,10 +301,10 @@ export default function App() {
                 </div>
 
                 {/* BACK FACE */}
-                <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-6 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
-                  <div className="flex justify-between items-start mb-3 md:mb-8 border-b-2 border-slate-100 pb-3 md:pb-6">
+                <div className="absolute inset-0 backface-hidden bg-white rounded-[2.5rem] md:rounded-[3.5rem] rotate-y-180 flex flex-col p-5 md:p-14 border-[8px] md:border-[12px] border-indigo-50 overflow-y-auto overflow-x-hidden">
+                  <div className="flex justify-between items-start mb-2 md:mb-8 border-b-2 border-slate-100 pb-2 md:pb-6">
                     <div className="flex flex-col">
-                      <span className="text-5xl md:text-7xl font-bold text-indigo-900 leading-none">{currentCard.kanji}</span>
+                      <span className="text-5xl md:text-7xl font-black text-indigo-900 leading-none kanji-heavy">{currentCard.kanji}</span>
                       <button
                         onClick={(e) => { e.stopPropagation(); setIsStrokeOrderOpen(true); }}
                         className="mt-3 flex items-center gap-2.5 text-[13px] font-black text-white uppercase tracking-widest hover:bg-indigo-700 transition-all bg-indigo-600 px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-100 active:scale-95 border-none"
@@ -352,31 +352,31 @@ export default function App() {
             </div>
 
             {/* Bottom Controls Group */}
-            <div className="flex flex-col gap-4 pb-4">
+            <div className="flex flex-col gap-2 md:gap-4 pb-2 md:pb-4">
               {/* Controls Area */}
-              <div className="h-24 md:h-32">
+              <div className="h-20 md:h-32">
                 {isFlipped ? (
                   <div className="grid grid-cols-3 gap-3 md:gap-5 animate-in fade-in slide-in-from-bottom-8 duration-500">
                     <button
                       onClick={(e) => { e.stopPropagation(); handleMark('wrong'); }}
-                      className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-red-500 hover:text-white border-2 border-red-50 text-red-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-red-50 active:scale-90 group"
+                      className="flex flex-col items-center justify-center py-3 md:py-6 bg-white hover:bg-red-500 hover:text-white border-2 border-red-50 text-red-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-red-50 active:scale-90 group"
                     >
-                      <XCircle className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
-                      <span className="text-[11px] md:text-[13px] font-black uppercase italic tracking-widest">မရသေး</span>
+                      <XCircle className="w-7 h-7 md:w-10 md:h-10 mb-1 group-hover:scale-110 transition-transform" />
+                      <span className="text-[10px] md:text-[13px] font-black uppercase italic tracking-widest">မရသေး</span>
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleMark('hard'); }}
-                      className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-amber-500 hover:text-white border-2 border-amber-50 text-amber-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-amber-50 active:scale-90 group"
+                      className="flex flex-col items-center justify-center py-3 md:py-6 bg-white hover:bg-amber-500 hover:text-white border-2 border-amber-50 text-amber-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-amber-50 active:scale-90 group"
                     >
-                      <AlertCircle className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
-                      <span className="text-[11px] md:text-[13px] font-black uppercase italic tracking-widest">သိရုံပဲ</span>
+                      <AlertCircle className="w-7 h-7 md:w-10 md:h-10 mb-1 group-hover:scale-110 transition-transform" />
+                      <span className="text-[10px] md:text-[13px] font-black uppercase italic tracking-widest">သိရုံပဲ</span>
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleMark('easy'); }}
-                      className="flex flex-col items-center justify-center py-4 md:py-6 bg-white hover:bg-emerald-500 hover:text-white border-2 border-emerald-50 text-emerald-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-emerald-50 active:scale-90 group"
+                      className="flex flex-col items-center justify-center py-3 md:py-6 bg-white hover:bg-emerald-500 hover:text-white border-2 border-emerald-50 text-emerald-500 rounded-[1.5rem] md:rounded-[2.5rem] transition-all shadow-xl shadow-emerald-50 active:scale-90 group"
                     >
-                      <CheckCircle2 className="w-8 h-8 md:w-10 md:h-10 mb-1 md:mb-2 group-hover:scale-110 transition-transform" />
-                      <span className="text-[11px] md:text-[13px] font-black uppercase italic tracking-widest">ကျွမ်းကျင်</span>
+                      <CheckCircle2 className="w-7 h-7 md:w-10 md:h-10 mb-1 group-hover:scale-110 transition-transform" />
+                      <span className="text-[10px] md:text-[13px] font-black uppercase italic tracking-widest">ကျွမ်းကျင်</span>
                     </button>
                   </div>
                 ) : (
